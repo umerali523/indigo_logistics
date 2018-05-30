@@ -1,0 +1,127 @@
+
+<div style="width:100%;" class="app flex-row align-items-center">
+  <!-- <spinner style="position: relative;left:240px;top:-10px;z-index:999;" *ngIf="loading" [size]="70" [tickness]="2"></spinner>-->
+ 
+ <div class="container" style="position: relative">
+     <!-- <spinner style="z-index:999;position:relative;left:510px;top:300px;" *ngIf="loading" [size]="70" [tickness]="4"></spinner> -->
+   <div class="justify-content-center">
+     <div class="col-md-12 col-xs-10 mainContainer">
+       <div class="card md-5" style="background-color: #F6F4F5;margin-top: 10px;">
+         <div class="registerForm">
+         <form (ngSubmit)="addUser()" [formGroup]="form" class="form-group">
+          <div class="form-row">
+                <div class="form-group col-md-10">
+                 <h4 class="registerFormTitle">Register</h4>
+                </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-10">
+                  <hr/>
+              </div>
+        </div>
+         
+          <div class="form-row">
+            <div class="form-group col-md-5 col-xs-2">
+              <label for="first_name">First Name</label>
+              <input [ngClass]="{invalidFormFields:first_name.touched && first_name.invalid}"  placeholder="First Name"  formControlName="first_name" id="first_name" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="last_name">Last Name</label>
+              <input [ngClass]="{invalidFormFields:last_name.touched && last_name.invalid}" placeholder="Last Name"  formControlName="last_name" id="last_name" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="email">Email</label>
+              <input id="email" [ngClass]="{invalidFormFields:email.touched && email.invalid}" formControlName="email" type="text" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="phone_number">Phone Number</label>
+              <input [ngClass]="{invalidFormFields:phone_number.touched && phone_number.invalid}" placeholder="Phone Number" formControlName="phone_number" id="phone_number" type="text" class="form-control">
+            </div>
+
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="password">Password</label>
+              <input [ngClass]="{invalidFormFields:password.touched && password.invalid}" placeholder="Password" formControlName="password" id="password" type="password" class="form-control">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="cPassword">Confirm Password</label>
+              <input [ngClass]="{invalidFormFields:confirm_password.touched && confirm_password.invalid}" placeholder="Confirm Password" formControlName="confirm_password" id="cPassword" type="password" class="form-control">
+            </div>
+            
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="address_details"><h6>Address Details</h6></label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="house_no">Unit/House</label>
+              <input [ngClass]="{invalidFormFields:house_no.touched && house_no.invalid}"  placeholder="Enter Unit/House"  formControlName="house_no" id="house_no" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="street">Street</label>
+              <input [ngClass]="{invalidFormFields:street.touched && street.invalid}" placeholder="Enter Street" formControlName="street" id="street" type="text" class="form-control">
+            </div>
+            
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="suburb">Postcode/Suburb</label>
+              <input [ngClass]="{invalidFormFields:suburb.touched && suburb.invalid}"  placeholder="Enter Postcode/Suburb"  formControlName="suburb" id="suburb" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="state">State</label>
+              <input [ngClass]="{invalidFormFields:state.touched && state.invalid}" placeholder="Enter State" formControlName="state" id="state" type="text" class="form-control">
+            </div>
+            
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="business">Business Name</label>
+              <input [ngClass]="{invalidFormFields:business.touched && business.invalid}"  placeholder="Enter Business Name"  formControlName="business" id="business" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-5">
+              
+            </div>
+            
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5" style="margin-left: 24px;">
+              <input [ngClass]="{invalidFormFields:term_condition.touched && term_condition.invalid}"  formControlName="term_condition" id="term_condition" type="checkbox" class="form-check-input">
+              <label class="form-check-label" for="gridCheck">
+                I agree to terms and conditions
+              </label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+            </div>
+            <div class="form-group col-md-5">
+              <button style="background-color: #F06506" [disabled]="!form.valid || this.invalidFile" type="submit" class="btn btn-block btn-success">Register</button>
+            </div>
+            <div class="form-group col-md-3">
+            </div>
+           
+            
+          </div>
+
+         </form>
+        </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+<style>
+ .invalidFormFields{
+   border-color :red ;
+   border-width:2px;
+ }
+
+</style>

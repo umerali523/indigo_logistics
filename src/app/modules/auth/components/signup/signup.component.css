@@ -1,0 +1,16 @@
+.registerForm{
+    margin: auto;
+    width: 750px;
+    margin-left: 84px;
+   
+}
+.registerFormTitle{
+  font-size: 2.0vw;
+  text-align: center;
+}
+.col-md-4{
+}
+.mainContainer{
+    width: 800px;
+    margin-left: 100px;
+}
