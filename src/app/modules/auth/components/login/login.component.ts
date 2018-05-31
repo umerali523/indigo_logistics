@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router : Router) { 
     //this.localStore = new SecureLS();
   }
  
@@ -47,6 +47,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
   
+     console.log(this.form);
+     var username = this.form.value.username;
+     var password = this.form.value.password;
+     if(username=="admin"&&password=="admin"){
+      this.router.navigate(['dashboard']);
+     }
     // this.loginSpin = true;
     // this.loginError = '';
     // if(this.form.valid){

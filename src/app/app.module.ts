@@ -23,6 +23,9 @@ import { AsideToggleDirective } from './shared/directives/aside.directive';
 import { CommonModule } from '@angular/common';
 import {NgxMaskModule} from 'ngx-mask'
 import { SharedService } from './shared/services/shared.service';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { AppNavbarComponent } from './layouts/components/app-navbar/app-navbar.component';
+import { MainLayoutComponent } from './layouts/main/main-layout.component';
 
 
 
@@ -35,6 +38,9 @@ import { SharedService } from './shared/services/shared.service';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
+    DashboardComponent,
+    AppNavbarComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
