@@ -14,3 +14,10 @@
     width: 800px;
     margin-left: 100px;
 }
+.requiredField{
+    color: red;
+}
+.labelError{
+    color: red;
+    font-size: 0.9em;
+}

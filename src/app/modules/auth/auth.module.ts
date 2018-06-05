@@ -6,6 +6,7 @@ import { AuthRoutes as routes } from './auth.routing';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SpinnerModule } from 'angular2-spinner/dist';
+import { AuthService } from '../../core/services/auth-service.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SpinnerModule } from 'angular2-spinner/dist';
     
   ],
   declarations: [LoginComponent, SignupComponent],
-  providers : []
+  providers : [AuthService]
 })
 export class AuthModule { }

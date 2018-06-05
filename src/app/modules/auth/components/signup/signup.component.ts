@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +12,10 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  constructor( ) { 
+  constructor(private authService : AuthService ) { 
   }
-
+  error_arr = [];
+  
 
   ngOnInit() {
     
@@ -23,21 +25,134 @@ export class SignupComponent implements OnInit {
     last_name : new FormControl('' , [Validators.required]),
     email : new FormControl('', [Validators.required,Validators.email]),
     password : new FormControl('', [Validators.required]),
-    phone_number : new FormControl('', [Validators.required,Validators.pattern("[0-9]+")]) ,
-    confirm_password : new FormControl('', [Validators.required]) ,
-    user_type : new FormControl('',) ,
-    house_no : new FormControl('',) ,
-    street : new FormControl('',) ,
-    state : new FormControl('',) ,
-    suburb : new FormControl('',) ,
-    business : new FormControl('',) ,
+    phone : new FormControl('', [Validators.required,Validators.pattern("[0-9]+")]),
+    password_confirmation : new FormControl('', [Validators.required]) ,
+    house_no : new FormControl('',[Validators.required]) ,
+    street : new FormControl('',[Validators.required]) ,
+    suburb : new FormControl('',[Validators.required]) ,
+    state : new FormControl('',[Validators.required]) ,
+    business : new FormControl('',[Validators.required]) ,
+    user_type : new FormControl('',[Validators.required]) ,
     term_condition : new FormControl('',[Validators.required]),
   });
  
   
    
   addUser(){
+  
+    if(!this.form.valid){
+      console.log('FName field:',this.phone);
+      console.log('Form:',this.form);
+      if(this.first_name.hasError('required')){
+        this.error_arr[0] = 'First Name is required';
+
+      }else{
+        this.error_arr[0] = '';
+        
+      }
+      if(this.last_name.hasError('required')){
+        this.error_arr[1] = 'Last Name is required';
+
+      }else{
+        this.error_arr[1] = '';
+        
+      }
+      if(this.email.hasError('required')){
+        this.error_arr[2] = 'Email is required';
+
+      }else if(this.email.hasError('email')){
+        this.error_arr[2] = 'Invalid email address';
+        
+      }else{
+        this.error_arr[2] = '';
+        
+      }
+      if(this.phone.hasError('required')){
+        this.error_arr[3] = 'Phone is required';
+
+      }else if(this.phone.hasError('pattern')){
+        this.error_arr[3] = 'Invalid phone number';
+
+      }else{
+        this.error_arr[3] = '';
+        
+      }
+      if(this.password.hasError('required')){
+        this.error_arr[4] = 'Password is required';
+
+      }else{
+        this.error_arr[4] = '';
+        
+      }
+      if(this.password_confirmation.hasError('required')){
+        this.error_arr[5] = 'Confirm password is required';
+
+      }else{
+        this.error_arr[5] = '';
+        
+      }
+
+      if(this.house_no.hasError('required')){
+        this.error_arr[6] = 'House No is required';
+
+      }else{
+        this.error_arr[6] = '';
+        
+      }
+      if(this.street.hasError('required')){
+        this.error_arr[7] = 'Street No is required';
+
+      }else{
+        this.error_arr[7] = '';
+        
+      }
+      if(this.suburb.hasError('required')){
+        this.error_arr[8] = 'Suburb/Postcode is required';
+
+      }else{
+        this.error_arr[8] = '';
+        
+      }
+      if(this.state.hasError('required')){
+        this.error_arr[9] = 'State is required';
+
+      }else{
+        this.error_arr[9] = '';
+        
+      }
+      if(this.business.hasError('required')){
+        this.error_arr[10] = 'Business name is required';
+
+      }else{
+        this.error_arr[10] = '';
+        
+      }
+      if(this.user_type.hasError('required')){
+        this.error_arr[11] = 'User type is required';
+
+      }else{
+        this.error_arr[11] = '';
+        
+      }
+      if(this.term_condition.hasError('required')){
+        this.error_arr[12] = 'Select term & conditions';
+
+      }else{
+        this.error_arr[12] = '';
+        
+      }
+      console.log(this.error_arr);
+      
+    }else{
+      var user = {};
+      user['user'] = this.form.value;
+      this.authService.signupUser(user);
+
+    }
+
     
+    
+
        
   }
   get first_name(){
@@ -52,11 +167,11 @@ export class SignupComponent implements OnInit {
   get password(){
     return this.form.get('password');
   }
-  get confirm_password(){
-    return this.form.get('confirm_password');
+  get password_confirmation(){
+    return this.form.get('password_confirmation');
   }
-  get phone_number(){
-    return this.form.get('phone_number');
+  get phone(){
+    return this.form.get('phone');
   }
   get user_type(){
     return this.form.get('user_type');

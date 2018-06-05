@@ -1,5 +1,5 @@
 export const environment = {
-  // production: false,
+   production: true,
   // API_HOST: 'https://api.carecinch.com/',
   // BASE_URL: 'https://pms.carecinch.com/',
   appName: 'Indigo Logistics'

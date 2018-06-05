@@ -22,33 +22,57 @@
          
           <div class="form-row">
             <div class="form-group col-md-5 col-xs-2">
-              <label for="first_name">First Name</label>
-              <input [ngClass]="{invalidFormFields:first_name.touched && first_name.invalid}"  placeholder="First Name"  formControlName="first_name" id="first_name" type="text" class="form-control">
+              <label for="first_name">First Name
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[0]" class="labelError">{{this.error_arr[0]}}</span>
+              </label>
+              <!-- [ngClass]="{invalidFormFields:first_name.touched && first_name.invalid}" -->
+              <input placeholder="First Name"  formControlName="first_name" id="first_name" type="text" class="form-control has-error">
             </div>
             <div class="form-group col-md-5">
-              <label for="last_name">Last Name</label>
+              <label for="last_name">Last Name
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[1]" class="labelError">{{this.error_arr[1]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:last_name.touched && last_name.invalid}" placeholder="Last Name"  formControlName="last_name" id="last_name" type="text" class="form-control">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-5">
-              <label for="email">Email</label>
+              <label for="email">Email
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[2]" class="labelError">{{this.error_arr[2]}}</span>
+                
+              </label>
               <input id="email" [ngClass]="{invalidFormFields:email.touched && email.invalid}" formControlName="email" type="text" class="form-control" placeholder="Email">
             </div>
             <div class="form-group col-md-5">
-              <label for="phone_number">Phone Number</label>
-              <input [ngClass]="{invalidFormFields:phone_number.touched && phone_number.invalid}" placeholder="Phone Number" formControlName="phone_number" id="phone_number" type="text" class="form-control">
+              <label for="phone">Phone Number
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[3]" class="labelError">{{this.error_arr[3]}}</span>
+                
+              </label>
+              <input [ngClass]="{invalidFormFields:phone.touched && phone.invalid}" placeholder="Phone Number" formControlName="phone" id="phone" type="text" class="form-control">
             </div>
 
           </div>
           <div class="form-row">
             <div class="form-group col-md-5">
-              <label for="password">Password</label>
+              <label for="password">Password
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[4]" class="labelError">{{this.error_arr[4]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:password.touched && password.invalid}" placeholder="Password" formControlName="password" id="password" type="password" class="form-control">
             </div>
             <div class="form-group col-md-5">
-              <label for="cPassword">Confirm Password</label>
-              <input [ngClass]="{invalidFormFields:confirm_password.touched && confirm_password.invalid}" placeholder="Confirm Password" formControlName="confirm_password" id="cPassword" type="password" class="form-control">
+              <label for="cPassword">Confirm Password
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[5]" class="labelError">{{this.error_arr[5]}}</span>
+                
+              </label>
+              <input [ngClass]="{invalidFormFields:password_confirmation.touched && password_confirmation.invalid}" placeholder="Confirm Password" formControlName="password_confirmation" id="cPassword" type="password" class="form-control">
             </div>
             
           </div>
@@ -60,33 +84,74 @@
 
           <div class="form-row">
             <div class="form-group col-md-5">
-              <label for="house_no">Unit/House</label>
+              <label for="house_no">Unit/House
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[6]" class="labelError">{{this.error_arr[6]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:house_no.touched && house_no.invalid}"  placeholder="Enter Unit/House"  formControlName="house_no" id="house_no" type="text" class="form-control">
             </div>
             <div class="form-group col-md-5">
-              <label for="street">Street</label>
+              <label for="street">Street
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[7]" class="labelError">{{this.error_arr[7]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:street.touched && street.invalid}" placeholder="Enter Street" formControlName="street" id="street" type="text" class="form-control">
             </div>
             
           </div>
           <div class="form-row">
             <div class="form-group col-md-5">
-              <label for="suburb">Postcode/Suburb</label>
+              <label for="suburb">Postcode/Suburb
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[8]" class="labelError">{{this.error_arr[8]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:suburb.touched && suburb.invalid}"  placeholder="Enter Postcode/Suburb"  formControlName="suburb" id="suburb" type="text" class="form-control">
             </div>
-            <div class="form-group col-md-5">
-              <label for="state">State</label>
-              <input [ngClass]="{invalidFormFields:state.touched && state.invalid}" placeholder="Enter State" formControlName="state" id="state" type="text" class="form-control">
+            <div class="form-group col-md-5" >
+              <label for="state">State
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[9]" class="labelError">{{this.error_arr[9]}}</span>
+                
+              </label>
+              <!-- <input [ngClass]="{invalidFormFields:state.touched && state.invalid}" placeholder="Enter State" formControlName="state" id="state" type="text" class="form-control"> -->
+              <!-- , , WA, NT, NSW, TAS, SA,QLD -->
+              <select [ngClass]="{invalidFormFields:state.touched && state.invalid}" formControlName="state" id="state" class="form-control" style="height:55%;">
+                <option value="">Select State</option>
+                <option value="VIC">VIC</option>
+                <option value="ACT">ACT</option>
+                <option value="WA">WA</option>
+                <option value="NT">NT</option>
+                <option value="NSW">NSW</option>
+                <option value="TAS">TAS</option>
+                <option value="SA">SA</option>
+                <option value="QLD">QLD</option>
+              </select>
             </div>
             
           </div>
           <div class="form-row">
             <div class="form-group col-md-5">
-              <label for="business">Business Name</label>
+              <label for="business">Business Name
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[10]" class="labelError">{{this.error_arr[10]}}</span>
+                
+              </label>
               <input [ngClass]="{invalidFormFields:business.touched && business.invalid}"  placeholder="Enter Business Name"  formControlName="business" id="business" type="text" class="form-control">
             </div>
             <div class="form-group col-md-5">
-              
+                <label for="state">User Type
+                    <span class="requiredField">*</span>
+                    <span *ngIf="this.error_arr[11]" class="labelError">{{this.error_arr[11]}}</span>
+                    
+                  </label>
+                
+                  <select [ngClass]="{invalidFormFields:user_type.touched && user_type.invalid}" formControlName="user_type" id="user_type" class="form-control" style="height:55%;">
+                    <option value="">Select User Type</option>
+                    <option value="company">company</option>
+                  </select>
             </div>
             
           </div>
@@ -95,6 +160,9 @@
               <input [ngClass]="{invalidFormFields:term_condition.touched && term_condition.invalid}"  formControlName="term_condition" id="term_condition" type="checkbox" class="form-check-input">
               <label class="form-check-label" for="gridCheck">
                 I agree to terms and conditions
+                <span class="requiredField">*</span>
+                <span *ngIf="this.error_arr[12]" class="labelError">{{this.error_arr[12]}}</span>
+                
               </label>
             </div>
           </div>
@@ -102,13 +170,25 @@
             <div class="form-group col-md-3">
             </div>
             <div class="form-group col-md-5">
-              <button style="background-color: #F06506" [disabled]="!form.valid || this.invalidFile" type="submit" class="btn btn-block btn-success">Register</button>
+              <button style="background-color: #F06506"  type="submit" class="btn btn-block btn-success">Register</button>
             </div>
             <div class="form-group col-md-3">
             </div>
            
             
           </div>
+          <div class="form-row">
+              <div class="form-group col-md-3">
+              </div>
+              <div class="form-group col-md-5" style="text-align: center;font-weight: bold">
+                <!-- [disabled]="!form.valid" -->
+                <a [routerLink]="['/login']">Go to Login</a>
+              </div>
+              <div class="form-group col-md-3">
+              </div>
+             
+              
+            </div>
 
          </form>
         </div>
@@ -119,9 +199,9 @@
 </div>
 
 <style>
- .invalidFormFields{
+ /* .invalidFormFields{
    border-color :red ;
-   border-width:2px;
- }
+   border-width:1px;
+ } */
 
 </style>

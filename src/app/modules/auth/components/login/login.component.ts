@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import * as SecureLS from 'secure-ls';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../../../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { map } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router : Router) { 
+  constructor(private router : Router , private authService : AuthService) { 
     //this.localStore = new SecureLS();
   }
  
@@ -33,13 +34,13 @@ export class LoginComponent implements OnInit {
 
   
   form = new FormGroup({
-    username : new FormControl('' , Validators.compose([Validators.required]) ),
+    email : new FormControl('' , Validators.compose([Validators.required]) ),
     password : new FormControl('' , [ Validators.required])
 
   });
 
-  get username(){
-    return this.form.get('username');
+  get email(){
+    return this.form.get('email');
   }
   get password(){
     return this.form.get('password');
@@ -48,11 +49,16 @@ export class LoginComponent implements OnInit {
   onSubmit(){
   
      console.log(this.form);
-     var username = this.form.value.username;
+     var email = this.form.value.email;
      var password = this.form.value.password;
-     if(username=="admin"&&password=="admin"){
-      this.router.navigate(['dashboard']);
-     }
+     var user = {};
+     user['user'] = this.form.value;
+     this.authService.loginUser(user);
+   
+    //  if(username=="admin"&&password=="admin"){
+    //   this.router.navigate(['dashboard']);
+    //  }
+
     // this.loginSpin = true;
     // this.loginError = '';
     // if(this.form.valid){
