@@ -1,12 +1,12 @@
-<div style="width:100%;position: relative;top:100px;"  class="app flex-row align-items-center">
+<div style="width:100%;position: relative;top:10px;"  class="app flex-row align-items-center">
   <div class="container" style="position: relative">
     <div class="row justify-content-center">
       <div class="col-sm-6">
-        <div class="card-group mb-0">
-          <div class="card p-4">
+        <div class="card-group mb-0" >
+          <div class="card p-4" style="background-color: #F6F4F5;">
             <div class="card-body">
-              <h1>Login</h1>
-              <p class="text-muted">Sign In to your account</p>
+              <span style="text-align: center"><h1>Log In</h1></span>
+              <hr/>
               <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-group">
                 <div class="row">
                   <div class="col-6">
@@ -29,9 +29,14 @@
               </div>
               <!-- <div *ngIf="loginError" class="alert alert-danger">{{this.loginError}}</div> -->
              <!-- <div *ngIf="(email.touched && email.invalid)||(password.touched && password.invalid)" class="alert alert-danger">Fields are required</div>-->
+             <div class="row">
+               <div class="col-md-12">
+                 <a [routerLink]="['/forgot-password']" style="float: right;margin-bottom: 10px;">Forgot your password?</a>
+               </div>
+             </div>
               <div class="row">
-                <div class="col-6">
-                  <button style="background-color: #F06506" type="submit" class="btn btn-primary px-4">Login</button>
+                <div class="col-md-12" style="text-align: center">
+                  <button style="background-color: #F06506;width: 230px;border-radius: 3px;margin-bottom: 10px;" type="submit" class="btn btn-primary px-4">Login</button>
                 </div>
                 <spinner style="position: relative;left:-40px;bottom : 100px;z-index:999;" *ngIf="loginSpin" color="#F06506"  [size]="90" [tickness]="1"></spinner>
               </div>

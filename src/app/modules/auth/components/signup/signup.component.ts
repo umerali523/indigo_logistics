@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service.service';
+import { ComparePassowrd } from '../../../../shared/validators/compare-password.validator';
 
 @Component({
   selector: 'app-signup',
@@ -21,13 +22,21 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     
   }
+  password_group_form = new FormGroup({
+    password : new FormControl('', [Validators.required , Validators.minLength(6)]),
+    password_confirmation : new FormControl('', [Validators.required ,]) ,
+    
+  },{
+    validators : ComparePassowrd.bind(this)
+  });
   form = new FormGroup({
     first_name : new FormControl('' , [Validators.required]),
     last_name : new FormControl('' , [Validators.required]),
     email : new FormControl('', [Validators.required,Validators.email]),
-    password : new FormControl('', [Validators.required , Validators.minLength(6)]),
+    password_form : this.password_group_form,
+    //password : new FormControl('', [Validators.required , Validators.minLength(6)]),
     phone : new FormControl('', [Validators.required,Validators.pattern("[0-9]+")]),
-    password_confirmation : new FormControl('', [Validators.required ,]) ,
+    //password_confirmation : new FormControl('', [Validators.required ,ComparePassowrd(this.form)]) ,
     house_no : new FormControl('',[Validators.required]) ,
     street : new FormControl('',[Validators.required]) ,
     suburb : new FormControl('',[Validators.required]) ,
@@ -40,9 +49,8 @@ export class SignupComponent implements OnInit {
   
    
   addUser(){
-  
+    console.log(this.password_group_form);
     if(!this.form.valid){
-      console.log(this.password);
       if(this.first_name.hasError('required')){
         this.error_arr[0] = 'First Name is required';
 
@@ -90,6 +98,9 @@ export class SignupComponent implements OnInit {
       if(this.password_confirmation.hasError('required')){
         this.error_arr[5] = 'Confirm password is required';
 
+      }else if(this.password_group_form.hasError('compare_password')){
+        this.error_arr[5] = 'Password does not match';
+        
       }else{
         this.error_arr[5] = '';
         
@@ -138,7 +149,7 @@ export class SignupComponent implements OnInit {
         
       }
       if(this.term_condition.hasError('required')){
-        this.error_arr[12] = 'Select terms & conditions';
+        this.error_arr[12] = 'Please accept our terms';
 
       }else{
         this.error_arr[12] = '';
@@ -150,6 +161,8 @@ export class SignupComponent implements OnInit {
       this.error_arr = [];
       this.signupSpin = true;
       var user = {};
+      this.form.value.password = this.form.value.password_form.password;
+      this.form.value.password_confirmation = this.form.value.password_form.password_confirmation;
       user['user'] = this.form.value;
       this.authService.signupUser(user).subscribe(res=>{
         console.log('signup response:',res);
@@ -178,11 +191,18 @@ export class SignupComponent implements OnInit {
   get email(){
     return this.form.get('email');
   }
+  // get password(){
+  //   return this.form.get('password');
+  // }
+  // get password_confirmation(){
+  //   return this.form.get('password_confirmation');
+  // }
+ 
   get password(){
-    return this.form.get('password');
+    return this.password_group_form.get('password');
   }
   get password_confirmation(){
-    return this.form.get('password_confirmation');
+    return this.password_group_form.get('password_confirmation');
   }
   get phone(){
     return this.form.get('phone');

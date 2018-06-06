@@ -40,7 +40,8 @@ import { HttpConfig } from './core/services/httpconfig.interceptor';
     AsideToggleDirective,
     DashboardComponent,
     AppNavbarComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    
   ],
   imports: [
     BrowserModule,

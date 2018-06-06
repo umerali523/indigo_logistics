@@ -1,0 +1,6 @@
+1) Inline all errors
+2) Password confirmation
+3) set company dashboard
+4) Handle failures http response and show errors
+5) State dropdown with post code options
+
