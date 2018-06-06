@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
 
   // public disabled = false;
@@ -39,6 +40,7 @@ export class AppNavbarComponent implements OnInit {
     //   this.spinner = false;
     // this.router.navigate(['']);
     // });
+    this.router.navigate(['']);
 
     
   }

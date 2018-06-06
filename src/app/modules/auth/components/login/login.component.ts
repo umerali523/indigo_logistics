@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
  
   // localStore;
-  // loginSpin : boolean = false; 
+  loginSpin : boolean = false; 
   // loginError;
   // currUser : User;
   // generalResponse : GeneralResponse;
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
   
      console.log(this.form);
+     
      var email = this.form.value.email;
      var password = this.form.value.password;
      var user = {};
@@ -72,13 +73,17 @@ export class LoginComponent implements OnInit {
       }
 
      }else{
+      this.loginSpin = true;
       this.error_arr = [];
       user['user'] = this.form.value; 
       this.authService.loginUser(user).subscribe(res=>{
         console.log('LoginResponse:',res);
+        this.loginSpin = false;
         this.router.navigate(['dashboard']);
+
       },
       err=>{
+        this.loginSpin = false;
         console.log('LoginError:',err);
 
       });

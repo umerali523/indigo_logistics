@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   constructor(private authService : AuthService, private router : Router ) { 
   }
   error_arr = [];
+  signupSpin : boolean;
   
 
   ngOnInit() {
@@ -147,13 +148,16 @@ export class SignupComponent implements OnInit {
       
     }else{
       this.error_arr = [];
+      this.signupSpin = true;
       var user = {};
       user['user'] = this.form.value;
       this.authService.signupUser(user).subscribe(res=>{
         console.log('signup response:',res);
+        this.signupSpin = false;
         this.router.navigate(['dashboard']);
         
       },err=>{
+        this.signupSpin = false;
         console.log('signup error:',err);
 
       });
