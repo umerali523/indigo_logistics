@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
     // }
   }
 
-  
+  error_arr = [];
   form = new FormGroup({
-    email : new FormControl('' , Validators.compose([Validators.required]) ),
+    email : new FormControl('' , Validators.compose([Validators.required , Validators.email]) ),
     password : new FormControl('' , [ Validators.required])
 
   });
@@ -52,8 +52,38 @@ export class LoginComponent implements OnInit {
      var email = this.form.value.email;
      var password = this.form.value.password;
      var user = {};
-     user['user'] = this.form.value;
-     this.authService.loginUser(user);
+     if(!this.form.valid){
+      if(this.email.hasError('required')){
+        this.error_arr[0] = 'Email is required';
+
+      }else if(this.email.hasError('email')){
+        this.error_arr[0] = 'Invalid Email Address';
+
+      }else{
+        this.error_arr[0] = '';
+        
+      }
+      if(this.password.hasError('required')){
+        this.error_arr[1] = 'Password is required';
+
+      }else{
+        this.error_arr[1] = '';
+        
+      }
+
+     }else{
+      this.error_arr = [];
+      user['user'] = this.form.value; 
+      this.authService.loginUser(user).subscribe(res=>{
+        console.log('LoginResponse:',res);
+        this.router.navigate(['dashboard']);
+      },
+      err=>{
+        console.log('LoginError:',err);
+
+      });
+     }
+     
    
     //  if(username=="admin"&&password=="admin"){
     //   this.router.navigate(['dashboard']);

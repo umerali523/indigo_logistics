@@ -12,7 +12,7 @@ import { AuthService } from '../../../../core/services/auth-service.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService : AuthService ) { 
+  constructor(private authService : AuthService, private router : Router ) { 
   }
   error_arr = [];
   
@@ -24,9 +24,9 @@ export class SignupComponent implements OnInit {
     first_name : new FormControl('' , [Validators.required]),
     last_name : new FormControl('' , [Validators.required]),
     email : new FormControl('', [Validators.required,Validators.email]),
-    password : new FormControl('', [Validators.required]),
+    password : new FormControl('', [Validators.required , Validators.minLength(6)]),
     phone : new FormControl('', [Validators.required,Validators.pattern("[0-9]+")]),
-    password_confirmation : new FormControl('', [Validators.required]) ,
+    password_confirmation : new FormControl('', [Validators.required ,]) ,
     house_no : new FormControl('',[Validators.required]) ,
     street : new FormControl('',[Validators.required]) ,
     suburb : new FormControl('',[Validators.required]) ,
@@ -41,8 +41,7 @@ export class SignupComponent implements OnInit {
   addUser(){
   
     if(!this.form.valid){
-      console.log('FName field:',this.phone);
-      console.log('Form:',this.form);
+      console.log(this.password);
       if(this.first_name.hasError('required')){
         this.error_arr[0] = 'First Name is required';
 
@@ -79,6 +78,9 @@ export class SignupComponent implements OnInit {
       }
       if(this.password.hasError('required')){
         this.error_arr[4] = 'Password is required';
+
+      }else if(this.password.hasError('minlength')){
+        this.error_arr[4] = 'Password must contain atleat six letters';
 
       }else{
         this.error_arr[4] = '';
@@ -135,7 +137,7 @@ export class SignupComponent implements OnInit {
         
       }
       if(this.term_condition.hasError('required')){
-        this.error_arr[12] = 'Select term & conditions';
+        this.error_arr[12] = 'Select terms & conditions';
 
       }else{
         this.error_arr[12] = '';
@@ -144,9 +146,17 @@ export class SignupComponent implements OnInit {
       console.log(this.error_arr);
       
     }else{
+      this.error_arr = [];
       var user = {};
       user['user'] = this.form.value;
-      this.authService.signupUser(user);
+      this.authService.signupUser(user).subscribe(res=>{
+        console.log('signup response:',res);
+        this.router.navigate(['dashboard']);
+        
+      },err=>{
+        console.log('signup error:',err);
+
+      });
 
     }
 

@@ -5,15 +5,16 @@
 
 export const environment = {
   production: false,
-  API_HOST: 'https://api.carecinch.com/',
-  BASE_URL: 'https://pms.carecinch.com/',
-  appName: 'Ethizo'
+  BASE_URL : 'http://203.143.95.45:12220/',
+  appName: 'Indigo Logistics'
+
+
 };
 
 export const api_params = {
-  API_BASE_URL: 'https://api-charlie.carecinch.com/',
-  LOGIN_HOST_URL : 'users/login.json',
-  LOGOUT_HOST_URL : 'users/logout.json',
-  PRACTICE_LISTING_URL : 'practices/listing.json',
-  LOCATION_LISTING_URL : 'practices/locations.json',
+  
+  BASE_URL : 'http://203.143.95.45:12220/',
+  SIGNUP_URL : 'backend/public/api/users/register',
+  LOGIN_URL : 'backend/public/api/users/login'
+  
 };

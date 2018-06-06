@@ -143,7 +143,7 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="state">User Type
-                    <span class="requiredField">*</span>
+                    <span class="requiredFiield">*</span>
                     <span *ngIf="this.error_arr[11]" class="labelError">{{this.error_arr[11]}}</span>
                     
                   </label>
@@ -156,7 +156,7 @@
             
           </div>
           <div class="form-row">
-            <div class="form-group col-md-5" style="margin-left: 24px;">
+            <div class="form-group col-md-12" style="margin-left: 24px;">
               <input [ngClass]="{invalidFormFields:term_condition.touched && term_condition.invalid}"  formControlName="term_condition" id="term_condition" type="checkbox" class="form-check-input">
               <label class="form-check-label" for="gridCheck">
                 I agree to terms and conditions

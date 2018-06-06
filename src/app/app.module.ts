@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { HttpConfig } from './core/services/httpconfig.interceptor';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -26,6 +25,7 @@ import { SharedService } from './shared/services/shared.service';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { AppNavbarComponent } from './layouts/components/app-navbar/app-navbar.component';
 import { MainLayoutComponent } from './layouts/main/main-layout.component';
+import { HttpConfig } from './core/services/httpconfig.interceptor';
 
 
 
@@ -57,11 +57,11 @@ import { MainLayoutComponent } from './layouts/main/main-layout.component';
     NgxMaskModule.forRoot()
   ],
   providers: [SharedService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: HttpConfig,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfig,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

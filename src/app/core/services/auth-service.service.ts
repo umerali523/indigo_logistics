@@ -10,20 +10,9 @@ export class AuthService {
 
   }
   signupUser(user){
-    this.http.post('http://203.143.95.45:12220/backend/public/api/users/register',user).subscribe(res=>{
-        console.log('Signup Res:',res);
-    },
-    err=>{
-        console.log('Signup Err:',err);
-    });
+    return this.http.post(api_params.SIGNUP_URL,user);
   }
   loginUser(user){
-    this.http.post('http://203.143.95.45:12220/backend/public/api/users/login',user).subscribe(res=>{
-        console.log('Login Res:',res);
-    },
-    err=>{
-        console.log('Login Err:',err);
-    });
-
+    return this.http.post(api_params.LOGIN_URL,user);
   }
 }

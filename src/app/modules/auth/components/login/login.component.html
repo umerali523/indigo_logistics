@@ -8,10 +8,21 @@
               <h1>Login</h1>
               <p class="text-muted">Sign In to your account</p>
               <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-group">
+                <div class="row">
+                  <div class="col-6">
+                    <span *ngIf="this.error_arr[0]" class="labelError">{{this.error_arr[0]}}</span>
+                    
+                  </div>
+                </div>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input [ngClass]="{invalidFormFields:email.touched && email.invalid}"  formControlName="email" placeholder="email" type="text" id="email" class="form-control">
+                <input [ngClass]="{invalidFormFields:email.touched && email.invalid}"  formControlName="email" placeholder="Email" type="text" id="email" class="form-control">
               </div>
+              <div class="row">
+                  <div class="col-6">
+                    <span *ngIf="this.error_arr[1]" class="labelError">{{this.error_arr[1]}}</span>
+                  </div>
+                </div>
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
                 <input [ngClass]="{invalidFormFields:password.touched && password.invalid}"  placeholder="Password" formControlName="password" type="password" id="password" class="form-control">
