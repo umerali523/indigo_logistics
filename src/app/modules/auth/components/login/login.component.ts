@@ -15,10 +15,10 @@ import { AuthService } from '../../../../core/services/auth-service.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router : Router , private authService : AuthService) { 
-    //this.localStore = new SecureLS();
+    this.localStore = new SecureLS();
   }
  
-  // localStore;
+  localStore;
   loginSpin : boolean = false; 
   // loginError;
   // currUser : User;
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
      
      var email = this.form.value.email;
      var password = this.form.value.password;
-     var user = {};
+     var loginUser = {};
      if(!this.form.valid){
       if(this.email.hasError('required')){
         this.error_arr[0] = 'Email is required';
@@ -75,10 +75,17 @@ export class LoginComponent implements OnInit {
      }else{
       this.loginSpin = true;
       this.error_arr = [];
-      user['user'] = this.form.value; 
-      this.authService.loginUser(user).subscribe(res=>{
+      loginUser['user'] = this.form.value; 
+      this.authService.loginUser(loginUser).subscribe(res=>{
         console.log('LoginResponse:',res);
         this.loginSpin = false;
+        var user = res['user'];
+        this.localStore.set('access_token',user.token);
+        this.localStore.set('first_name',user.first_name);
+        this.localStore.set('last_name',user.last_name);
+        this.localStore.set('user_type',user.user_type);
+
+         
         this.router.navigate(['dashboard']);
 
       },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as SecureLS from 'secure-ls';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +9,16 @@ import { Router } from '@angular/router';
 })
 export class AppNavbarComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router) {
+    this.localStore = new SecureLS();
+   }
 
 
   // public disabled = false;
   // public status: {isopen: boolean} = {isopen: false};
   // public spinner : boolean = false;
-  // public localStore;
-  // public username : string;
+  localStore;
+  username : string;
   // public current_user;
 
   public toggled(open: boolean): void {
@@ -30,7 +33,7 @@ export class AppNavbarComponent implements OnInit {
 
   ngOnInit(): void {
     // this.current_user = this.localStore.get('current_user');
-    // this.username = this.current_user.fname + ' ' + this.current_user.lname;
+    this.username = this.localStore.get('first_name') + ' ' + this.localStore.get('last_name');
   }
   logout(){
     // this.spinner = true;
@@ -40,6 +43,7 @@ export class AppNavbarComponent implements OnInit {
     //   this.spinner = false;
     // this.router.navigate(['']);
     // });
+    localStorage.clear();
     this.router.navigate(['']);
 
     

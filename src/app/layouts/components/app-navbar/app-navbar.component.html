@@ -12,13 +12,13 @@
     </li>
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)" style="right:40px;">
       <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
-        <span class="d-md-down-none">Indigo</span>
+        <span class="d-md-down-none">Hello {{this.username}}!!</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
         <a class="dropdown-item" [routerLink]="['/dashboard']"><i class="fa fa-shield"></i> Dashboard</a>
-        <a class="dropdown-item" [routerLink]="['/add_company']"><i class="fa fa-shield"></i> Add Company</a>
-        <a class="dropdown-item" [routerLink]="['/add_employee']"><i class="fa fa-shield"></i> Add Employee</a>
+        <a class="dropdown-item" [routerLink]="['/indigo/add_company']"><i class="fa fa-shield"></i> Add Company</a>
+        <a class="dropdown-item" [routerLink]="['/indigo/add_employee']"><i class="fa fa-shield"></i> Add Employee</a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>

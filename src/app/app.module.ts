@@ -26,6 +26,10 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { AppNavbarComponent } from './layouts/components/app-navbar/app-navbar.component';
 import { MainLayoutComponent } from './layouts/main/main-layout.component';
 import { HttpConfig } from './core/services/httpconfig.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { SignupComponent } from './modules/auth/components/signup/signup.component';
+import { SharedModule } from './shared/modules/shared.module';
+import { AuthService } from './core/services/auth-service.service';
 
 
 
@@ -48,6 +52,7 @@ import { HttpConfig } from './core/services/httpconfig.interceptor';
     RouterModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     BrowserModule,
     RouterModule,
     FormsModule, 
@@ -55,9 +60,10 @@ import { HttpConfig } from './core/services/httpconfig.interceptor';
     HttpClientModule,
     SpinnerModule,
     CommonModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    SharedModule
   ],
-  providers: [SharedService,
+  providers: [SharedService,AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfig,

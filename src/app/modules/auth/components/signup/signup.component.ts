@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service.service';
@@ -13,11 +16,15 @@ import { ComparePassowrd } from '../../../../shared/validators/compare-password.
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService : AuthService, private router : Router ) { 
+  constructor(private authService : AuthService, private router : Router,private modalService: BsModalService, ) { 
   }
+
   error_arr = [];
   signupSpin : boolean;
-  
+
+  @ViewChild('template')
+  public template: TemplateRef<any>;
+  modalRef: BsModalRef;
 
   ngOnInit() {
     
@@ -229,4 +236,18 @@ export class SignupComponent implements OnInit {
     return this.form.get('term_condition');
   }
 
+  redirectToLogin(){
+
+  }
+
+  openModal(temp) {
+    console.log('Inside open Modal',temp);
+    this.modalRef = this.modalService.show(temp);
+  }
+  closeModal(){
+  
+   this.modalRef.hide();
+   this.router.navigate(['login']);
+   
+  }
 }

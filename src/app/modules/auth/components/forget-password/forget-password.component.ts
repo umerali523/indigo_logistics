@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , TemplateRef, ViewChild  } from '@angular/core';
 import {  FormControl, FormGroup , Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import * as SecureLS from 'secure-ls';
 import { AuthService } from '../../../../core/services/auth-service.service';
 
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
@@ -13,7 +15,22 @@ import { AuthService } from '../../../../core/services/auth-service.service';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: BsModalService,) { }
+
+  @ViewChild('template')
+  public template: TemplateRef<any>;
+   modalRef: BsModalRef;
+
+  openModal(temp) {
+    console.log('Inside Open Modal');
+    this.modalRef = this.modalService.show(temp);
+  }
+  closeModal(){
+    //console.log('Inside Close Modal');
+   // this.modalService.hide(0);
+   this.modalRef.hide();
+   
+  }
 
   ngOnInit() {
   }

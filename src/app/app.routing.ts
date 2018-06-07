@@ -14,6 +14,9 @@ export const routes: Routes = [
   { path: '', component:AuthLayoutComponent , loadChildren:'./modules/auth/auth.module#AuthModule' },
 
   { path: 'dashboard', component:MainLayoutComponent , children:[{path:'',component:DashboardComponent}] },
+  { path: 'indigo/add_company', component:MainLayoutComponent , children:[{path:'',component:SignupComponent}] },
+  { path: 'indigo/add_employee', component:MainLayoutComponent , children:[{path:'',component:SignupComponent}] },
+  
 
 //   // { path: 'pms', component:PmsLayoutComponent , children:
 //   //   [{path:'',component:PmsDashboardComponent , canActivate : [AuthGuard]}] },
