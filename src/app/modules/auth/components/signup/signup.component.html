@@ -161,14 +161,16 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="state">User Type
-                    <span class="requiredFiield">*</span>
+                    <span class="requiredField">*</span>
                     <span *ngIf="this.error_arr[11]" class="labelError">{{this.error_arr[11]}}</span>
                     
                   </label>
                 
                   <select [ngClass]="{invalidFormFields:user_type.touched && user_type.invalid}" formControlName="user_type" id="user_type" class="form-control" style="height:55%;">
                     <option value="">Select User Type</option>
-                    <option value="company">company</option>
+                    <option ngValue="{{userType}}">{{userType}}</option>
+                    <!-- <option ngShow="userType==company" value="company">Company</option>
+                    <option ngShow="userType==employee" value="employee">Employee</option> -->
                   </select>
             </div>
             
@@ -199,7 +201,7 @@
           <div class="form-row">
               <div class="form-group col-md-3">
               </div>
-              <div class="form-group col-md-5" style="text-align: center;font-weight: bold">
+              <div *ngIf="current_route=='/signup'||current_route=='/register'" class="form-group col-md-5" style="text-align: center;font-weight: bold">
                 <!-- [disabled]="!form.valid" -->
                 <a [routerLink]="['/login']">Go to Login</a>
               </div>
@@ -243,5 +245,12 @@
    border-color :red ;
    border-width:1px;
  } */
+ /* .blur-filter {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+} */
 
 </style>

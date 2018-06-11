@@ -1,0 +1,179 @@
+<div class="dashboardContainer">
+  <div class="row">
+    <!-- <a [routerLink]="[]"> -->
+      <div class="col-sm-4 col-lg-3">
+        <a [routerLink]="['/company/dashboard']">
+        <div class="card text-white bg-primary">
+          <div class="card-body pb-0" >
+              <i class="dashboardBoxIcons fa fa-tachometer"></i> 
+            <p style="font-weight: bold">Dashboard</p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+            
+            </div>
+        </div>
+      </a>
+      </div>
+    <!-- </a> -->
+      <div class="col-sm-4 col-lg-3">
+        <a [routerLink]="['/company/dashboard']">
+        <div class="card text-white bg-info">
+          <div class="card-body pb-0">
+              <i class="dashboardBoxIcons fa fa-pencil-square-o"></i>
+            <p>Get A QUOTE</p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+            
+          </div>
+        </div>
+        </a>
+      </div><!--/.col-->
+      <div class="col-sm-4 col-lg-3">
+          <a [routerLink]="['/company/dashboard']">
+        <div class="card text-white bg-warning">
+          <div class="card-body pb-0">
+              <i class="dashboardBoxIcons fa  fa-folder-open"></i>
+            <p>MY QUOTES</p>
+          </div>
+          <div class="chart-wrapper" style="height:70px;">
+            
+          </div>
+        </div>
+        </a>
+      </div><!--/.col-->
+      <div class="col-sm-4 col-lg-3">
+          <a [routerLink]="['/company/dashboard']">
+        <div class="card text-white bg-danger">
+          <div class="card-body pb-0" >
+              <i class="dashboardBoxIcons fa fa-calendar"></i>
+            <p>MY BOOKING</p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+           
+          </div>
+        </div>
+        </a>
+      </div>
+       <div class="col-sm-4 col-lg-3">
+          <a [routerLink]="['/company/dashboard']">
+        <div class="card text-white bg-secondary">
+          <div class="card-body pb-0">
+              <i class="dashboardBoxIcons fa fa-list-alt"></i>
+            <p>MY INVOICES</p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+           
+          </div>
+        </div>
+        </a>
+      </div>
+      <div class="col-sm-4 col-lg-3">
+          <a [routerLink]="['/company/dashboard']">
+          <div class="card text-white bg-dark">
+            <div class="card-body pb-0">
+                <i class="dashboardBoxIcons fa fa-location-arrow"></i>
+              <p>ADDRESS BOOK</p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:70px;">
+             
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-sm-4 col-lg-3">
+            <a [routerLink]="['/company/dashboard']">
+            <div class="card text-white bg-success">
+              <div class="card-body pb-0">
+                  <i class="dashboardBoxIcons fa  fa-credit-card"></i>
+                <p>APPLY FOR CREDIT</p>
+              </div>
+              <div class="chart-wrapper px-3" style="height:70px;">
+               
+              </div>
+            </div>
+            </a>
+          </div>
+         
+            <div class="col-sm-4 col-lg-3">
+                <a [routerLink]="['/company/dashboard']">
+                <div class="card text-white bg-info">
+                  <div class="card-body pb-0">
+                      <i class="dashboardBoxIcons fa fa-user"></i>
+                    <p>PROFILE</p>
+                  </div>
+                  <div class="chart-wrapper px-3" style="height:70px;">
+                   
+                  </div>
+                </div>
+                </a>
+              </div>
+              <div class="col-sm-4 col-lg-3">
+                  <a [routerLink]="['/company/change_password']">
+                  <div class="card text-white bg-danger">
+                    <div class="card-body pb-0">
+                        <i class="dashboardBoxIcons fa fa-key"></i>
+                      <p>CHANGE PASSWORD</p>
+                    </div>
+                    <div class="chart-wrapper px-3" style="height:70px;">
+                     
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              <div class="col-sm-4 col-lg-3" (click)="logout()" style="cursor: pointer;">
+                  <!-- <a [routerLink]="['/company/dashboard']"> -->
+                  <div class="card text-white" style="background-color: #FF6A26">
+                    <div class="card-body pb-0">
+                        <i class="dashboardBoxIcons fa fa-power-off"></i>
+                      <p>LOGOUT</p>
+                    </div>
+                    <div class="chart-wrapper px-3" style="height:70px;">
+                     
+                    </div>
+                  </div>
+                  <!-- </a> -->
+                </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" style="height: 400px;">
+        <div class="card text-white bg-dark">
+          <div class="card-body pb-0 graphTitle">
+            <i class="fa fa-bar-chart-o"></i>
+            <span>Total Sales</span>
+            <input class="customDP" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)">
+            
+          </div>
+        </div>
+        
+
+      </div>
+      <div class="col-md-6" style="height: 400px;">
+          <div class="card text-white bg-dark">
+            <div class="card-body pb-0 graphTitle">
+              <i class="fa fa-bar-chart-o"></i>
+              <span>Total Volume</span>
+              <input class="customDP" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)">
+              
+            </div>
+          </div>
+          
+  
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="height: 400px;">
+          <div class="card text-white bg-dark">
+            <div class="card-body pb-0 graphTitle">
+              <i class="fa fa-bar-chart-o"></i>
+              <span>Total Delivered</span>
+              <!-- <span class="input-group-addon"><i class="icon-lock"></i></span> -->
+              <input class="customDP" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)">
+            </div>
+          </div>
+          
+  
+        </div>
+      </div>
+   
+</div>

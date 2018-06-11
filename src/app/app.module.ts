@@ -30,6 +30,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SignupComponent } from './modules/auth/components/signup/signup.component';
 import { SharedModule } from './shared/modules/shared.module';
 import { AuthService } from './core/services/auth-service.service';
+import { CompanyLayoutComponent } from './layouts/company/company-layout.component';
+import { AppSidebarComponent } from './layouts/components/app-sidebar/app-sidebar.component';
 
 
 
@@ -45,6 +47,9 @@ import { AuthService } from './core/services/auth-service.service';
     DashboardComponent,
     AppNavbarComponent,
     MainLayoutComponent,
+    CompanyLayoutComponent,
+    AppSidebarComponent,
+    
     
   ],
   imports: [

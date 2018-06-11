@@ -19,6 +19,7 @@ export class AppNavbarComponent implements OnInit {
   // public spinner : boolean = false;
   localStore;
   username : string;
+  userType;
   // public current_user;
 
   public toggled(open: boolean): void {
@@ -32,8 +33,9 @@ export class AppNavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.current_user = this.localStore.get('current_user');
+    this.userType = this.localStore.get('user_type');
     this.username = this.localStore.get('first_name') + ' ' + this.localStore.get('last_name');
+    console.log('CUser:',this.userType);
   }
   logout(){
     // this.spinner = true;

@@ -21,12 +21,25 @@ export class SignupComponent implements OnInit {
 
   error_arr = [];
   signupSpin : boolean;
-
+  userType : string = '';
   @ViewChild('template')
   public template: TemplateRef<any>;
   modalRef: BsModalRef;
+  current_route:string;
 
   ngOnInit() {
+    console.log('route:',this.router.url);
+     this.current_route = this.router.url;
+    if( this.current_route=="/signup" ||  this.current_route=="/register"){
+      this.userType = 'company'
+
+    }else if( this.current_route=="/indigo/add_company"){
+      this.userType = 'company'
+
+    }else if( this.current_route=="/indigo/add_employee"){
+      this.userType = 'employee'
+
+    }
     
   }
   password_group_form = new FormGroup({

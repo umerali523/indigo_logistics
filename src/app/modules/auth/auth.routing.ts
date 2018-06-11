@@ -2,6 +2,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { ForgetPasswordComponent } from "./components/forget-password/forget-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
+import { Page404Component } from "../../shared/components/page404/page404.component";
 
 
 export const AuthRoutes = [

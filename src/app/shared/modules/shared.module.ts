@@ -4,6 +4,8 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SpinnerModule } from "angular2-spinner/dist";
+import { Page404Component } from "../components/page404/page404.component";
+import { ChangePasswordComponent } from "../components/change-password/change-password.component";
 
 @NgModule({
     imports: [
@@ -14,10 +16,13 @@ import { SpinnerModule } from "angular2-spinner/dist";
         SpinnerModule,
      ],
     declarations: [
-         SignupComponent
+         SignupComponent,
+         Page404Component,
+         ChangePasswordComponent
     ],
     exports: [
-        SignupComponent
+        SignupComponent,
+        Page404Component
     ]
 })
   

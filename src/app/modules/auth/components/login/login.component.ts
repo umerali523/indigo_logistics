@@ -84,9 +84,13 @@ export class LoginComponent implements OnInit {
         this.localStore.set('first_name',user.first_name);
         this.localStore.set('last_name',user.last_name);
         this.localStore.set('user_type',user.user_type);
-
-         
-        this.router.navigate(['dashboard']);
+        if(user.user_type=='admin'){
+          this.router.navigate(['dashboard']);
+        }
+        if(user.user_type=='company'){
+          this.router.navigate(['company']);
+          
+        }
 
       },
       err=>{

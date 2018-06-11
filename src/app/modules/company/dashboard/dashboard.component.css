@@ -1,0 +1,27 @@
+.dashboardContainer{
+    position: relative;
+    top: 50px;
+    left: 10px;
+    padding: 40px;
+    width: 100%;
+    background-color: white
+}
+.dashboardBoxIcons{
+    font-size: 50px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+
+}
+.customDP{
+    display: inline;
+    width: 170px;
+    height: 28px;
+    margin-left: 20px;
+
+}
+.graphTitle{
+    position: relative;
+    bottom: 8px;
+}
