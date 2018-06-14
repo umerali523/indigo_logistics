@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service.service';
 import { ComparePassowrd } from '../../../../shared/validators/compare-password.validator';
+import { General } from '../../../../core/models/general';
 
 @Component({
   selector: 'app-signup',
@@ -22,11 +23,39 @@ export class SignupComponent implements OnInit {
   error_arr = [];
   signupSpin : boolean;
   userType : string = '';
+  signupError : string;
+
   @ViewChild('template')
   public template: TemplateRef<any>;
   modalRef: BsModalRef;
-  current_route:string;
+  modalConfig = {
+    keyboard : false, 
+    ignoreBackdropClick: true
+  }
 
+
+  current_route:string;
+  generalRes : any;
+  public query3 = '';
+  public staticList = [
+    "guitar",
+    "drums",
+    "bass",
+    "electric guitars",
+    "keyboards",
+    "mic",
+    "bass guitars",
+    "trumpet",
+    "horns",
+    "guitar workshops",
+    "pedals"
+  ];
+
+  public handleStaticResultSelected (result) {
+    this.query3 = result;
+    console.log('Selected:',this.query3);
+  }
+  
   ngOnInit() {
     console.log('route:',this.router.url);
      this.current_route = this.router.url;
@@ -69,7 +98,9 @@ export class SignupComponent implements OnInit {
   
    
   addUser(){
-    console.log(this.password_group_form);
+    if(!this.term_condition.value){
+      this.term_condition.reset();
+    }
     if(!this.form.valid){
       if(this.first_name.hasError('required')){
         this.error_arr[0] = 'First Name is required';
@@ -171,6 +202,9 @@ export class SignupComponent implements OnInit {
       if(this.term_condition.hasError('required')){
         this.error_arr[12] = 'Please accept our terms';
 
+      }else if(this.term_condition.value==false){
+        this.error_arr[12] = 'Please accept our terms';
+
       }else{
         this.error_arr[12] = '';
         
@@ -187,11 +221,19 @@ export class SignupComponent implements OnInit {
       this.authService.signupUser(user).subscribe(res=>{
         console.log('signup response:',res);
         this.signupSpin = false;
-        this.router.navigate(['dashboard']);
+        this.generalRes = res;
+        if(this.generalRes.code==0){
+          this.openModal(this.template);
+        }else {
+          this.signupError = "Error occured from backend";
+        }
+       
+       // 
         
       },err=>{
         this.signupSpin = false;
-        console.log('signup error:',err);
+        this.signupError = "Error occured from backend";
+        
 
       });
 
@@ -255,7 +297,10 @@ export class SignupComponent implements OnInit {
 
   openModal(temp) {
     console.log('Inside open Modal',temp);
-    this.modalRef = this.modalService.show(temp);
+    this.modalRef = this.modalService.show(
+      temp ,
+      Object.assign(this.modalConfig, { class: 'gray modal-lg' })
+    );
   }
   closeModal(){
   

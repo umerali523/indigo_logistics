@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as SecureLS from 'secure-ls';
+import { AuthService } from '../../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import * as SecureLS from 'secure-ls';
 })
 export class AppNavbarComponent implements OnInit {
 
-  constructor(private router : Router) {
+  constructor(private router : Router , private authService : AuthService) {
     this.localStore = new SecureLS();
    }
 
@@ -20,6 +21,7 @@ export class AppNavbarComponent implements OnInit {
   localStore;
   username : string;
   userType;
+  token : string;
   // public current_user;
 
   public toggled(open: boolean): void {
@@ -38,15 +40,17 @@ export class AppNavbarComponent implements OnInit {
     console.log('CUser:',this.userType);
   }
   logout(){
-    // this.spinner = true;
-    // this.authService.logoutUser().subscribe(res=>{
-    //   console.log(res);
-    //   localStorage.clear();
-    //   this.spinner = false;
-    // this.router.navigate(['']);
-    // });
-    localStorage.clear();
-    this.router.navigate(['']);
+  
+   
+    this.authService.logoutUser().subscribe(res=>{
+      console.log(res);
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    },err=>{
+      console.log(err);
+
+    });
+   
 
     
   }

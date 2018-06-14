@@ -15,20 +15,23 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor(private modalService: BsModalService,) { }
+  constructor(private modalService: BsModalService,private authService : AuthService , private router : Router) { }
 
   @ViewChild('template')
   public template: TemplateRef<any>;
-   modalRef: BsModalRef;
+  modalRef: BsModalRef;
 
+  forgetPasswordSpin : boolean ;
+  forgotPassErr : string;
   openModal(temp) {
     console.log('Inside Open Modal');
-    this.modalRef = this.modalService.show(temp);
+    this.modalRef = this.modalService.show(temp,
+      Object.assign({keyboard : false, ignoreBackdropClick: true}, { class: 'gray modal-lg' }));
   }
   closeModal(){
-    //console.log('Inside Close Modal');
-   // this.modalService.hide(0);
+   
    this.modalRef.hide();
+   this.router.navigate(['/login']);
    
   }
 
@@ -61,6 +64,22 @@ export class ForgetPasswordComponent implements OnInit {
       }
     }else{
       this.error_arr = [];
+      this.forgetPasswordSpin = true;
+      this.authService.forgetPassword(this.form.value).subscribe(res=>{
+        
+      this.forgetPasswordSpin = false;
+      if(res['code']==0){
+        this.openModal(this.template);
+      }
+
+        console.log('ForgetPass:',res);
+      },err=>{
+        this.forgetPasswordSpin = false;
+        this.forgotPassErr = err['error'].message;
+        console.log('Err:',err);
+
+      });
+
     }
      
 

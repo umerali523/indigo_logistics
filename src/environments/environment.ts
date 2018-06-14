@@ -13,8 +13,14 @@ export const environment = {
 
 export const api_params = {
   
-  BASE_URL : 'http://203.143.95.45:12220/',
-  SIGNUP_URL : 'backend/public/api/users/register',
-  LOGIN_URL : 'backend/public/api/users/login'
+BASE_URL        : 'http://203.143.95.45:12220/',
+  SIGNUP_URL    : 'backend/public/api/users/register',
+  LOGIN_URL     : 'backend/public/api/users/login',
+  VERIFY_EMAIL  : 'backend/public/api/users/verify',
+  LOGOUT_URL     : 'backend/public/api/users/logout',
+  FORGOT_PASSWORD_URL : 'backend/public/api/password/email',
+  RESET_PASSWORD_URL : 'backend/public/api/password/reset',
+  CHANGE_PASSWORD_URL : 'backend/public/api/users/resetpassword'
+
   
 };

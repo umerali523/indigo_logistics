@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ComparePassowrd } from '../../validators/compare-password.validator';
+import { AuthService } from '../../../core/services/auth-service.service';
+import * as SecureLS from 'secure-ls';
+import { CompanyService } from '../../../core/services/company-service.service';
 
 @Component({
   selector: 'app-change-password',
@@ -9,15 +12,20 @@ import { ComparePassowrd } from '../../validators/compare-password.validator';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private companyService : CompanyService) {
+    this.localStore =  new SecureLS();
+   }
 
   ngOnInit() {
   }
 
 
   error_arr = [];
+  localStore;
+  errorMessage: string;
+  successMessage:  string;
   form = new FormGroup({
-    current_password : new FormControl('', [Validators.required]),
+    old_password : new FormControl('', [Validators.required]),
     password : new FormControl('', [Validators.required , Validators.minLength(6)]),
     password_confirmation : new FormControl('', [Validators.required ,]) ,
   },
@@ -25,8 +33,8 @@ export class ChangePasswordComponent implements OnInit {
     validators : ComparePassowrd.bind(this)
   });
 
-  get current_password(){
-    return this.form.get('current_password');
+  get old_password(){
+    return this.form.get('old_password');
   }
   get password(){
     return this.form.get('password');
@@ -36,7 +44,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   onSubmit(){
     if(!this.form.valid){
-      if(this.current_password.hasError('required')){
+      if(this.old_password.hasError('required')){
         this.error_arr[0] = 'Please enter current password';
 
       }else{
@@ -65,6 +73,14 @@ export class ChangePasswordComponent implements OnInit {
       }
     }else{
       this.error_arr = [];
+      var obj = this.form.value;
+      obj.token = this.localStore.get('access_token');
+      this.companyService.changePassword(obj).subscribe(res=>{
+        console.log('change pass res:',res);
+      },err=>{
+        console.log('err:',err);
+      });
+      
     }
   }
 }

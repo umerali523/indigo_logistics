@@ -12,49 +12,33 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class HttpConfig implements HttpInterceptor {
   constructor(){}
-//    localStore = new SecureLS();
-//     token : string;
-//     tzOffset : string;
-//     practice_id;
-//     generalResponse : GeneralResponse;
-
+    localStore = new SecureLS();
+    token : string;
     
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    // this.token = this.localStore.get('access_token');
-    // this.tzOffset = String(new Date().getTimezoneOffset());
-    // this.practice_id = this.localStore.get('practice_id');
+    this.token = this.localStore.get('access_token');
+   
 
     if(req.method=="POST"){
-
       var newReq = req.clone({
         url : api_params.BASE_URL  + req.url,
       });
-
-    //   return next.handle(newReq).pipe(tap(res=>{
-    //     if(res instanceof HttpResponse){
-    //       this.generalResponse = res.body['response'];
-    //       if(this.generalResponse.code==-1){
-    //         console.log('Inisde -1');
-    //         this.generalResponse.msg="Code -1, Invalid Credentials";
-    //       }
-
-    //     }
-    //   })).catch(this.errorHandler);
-    return next.handle(newReq);
+      return next.handle(newReq);
 
     }else if(req.method=="GET")
     {
-    //   var newReq = req.clone({
-    //     url : api_params.API_BASE_URL  + req.url,
-    //     setParams : {
-    //       token : this.token,
-    //       tz : this.tzOffset
-    //     }
+      console.log('GetOldUrl:',req);
+      var newReq = req.clone({
+        url : api_params.BASE_URL  + req.url,
+        setParams : {
+          token : this.token,
+          // tz : this.tzOffset
+        }
 
-    //   });
-    //   console.log('NewReq:',req);
-      return next.handle(req);
+      });
+       console.log('NewReq:',newReq);
+      return next.handle(newReq);
     }
   }
 

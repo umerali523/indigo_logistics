@@ -13,7 +13,6 @@ import { AbstractControl, ValidatorFn, ControlContainer } from '@angular/forms';
 // }
 
 export function ComparePassowrd(group : ControlContainer) {
-    console.log('control container:',group);
     if(group.value.password!==group.value.password_confirmation){
         return{
             compare_password : true

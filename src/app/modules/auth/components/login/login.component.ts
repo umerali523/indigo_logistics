@@ -19,13 +19,12 @@ export class LoginComponent implements OnInit {
   }
  
   localStore;
-  loginSpin : boolean = false; 
-  // loginError;
+  loginSpin : boolean; 
+  loginError;
   // currUser : User;
   // generalResponse : GeneralResponse;
   
   ngOnInit() {
-    console.log('Inside Login COmponent');
     // if(this.authService.isLoggedIn()){
     //   this.router.navigate(['dashboard']);
 
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-  
+     this.loginError = '';
      console.log(this.form);
      
      var email = this.form.value.email;
@@ -79,23 +78,28 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(loginUser).subscribe(res=>{
         console.log('LoginResponse:',res);
         this.loginSpin = false;
-        var user = res['user'];
-        this.localStore.set('access_token',user.token);
-        this.localStore.set('first_name',user.first_name);
-        this.localStore.set('last_name',user.last_name);
-        this.localStore.set('user_type',user.user_type);
-        if(user.user_type=='admin'){
-          this.router.navigate(['dashboard']);
-        }
-        if(user.user_type=='company'){
-          this.router.navigate(['company']);
-          
-        }
+        if(res['code']==0){
+
+          var user = res['data'];
+          this.localStore.set('access_token',user.token);
+          this.localStore.set('first_name',user.first_name);
+          this.localStore.set('last_name',user.last_name);
+          this.localStore.set('user_type',user.user_type);
+          if(user.user_type=='admin'){
+            this.router.navigate(['dashboard']);
+          }
+          if(user.user_type=='company'){
+            this.router.navigate(['company']);
+            
+          }
+      }
 
       },
       err=>{
         this.loginSpin = false;
-        console.log('LoginError:',err);
+        var err = err['error'];
+        this.loginError = err.message;
+        
 
       });
      }

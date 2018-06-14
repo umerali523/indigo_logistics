@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DaterangePickerComponent, DaterangepickerConfig } from 'ng2-daterangepicker';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private authService : AuthService) { }
 
   ngOnInit() {
   }
-
+  dashboardSpinner : boolean;
 
 
   @ViewChild(DaterangePickerComponent)
@@ -43,17 +44,17 @@ export class DashboardComponent implements OnInit {
 
 }
 logout(){
-  // this.spinner = true;
-  // this.authService.logoutUser().subscribe(res=>{
-  //   console.log(res);
-  //   localStorage.clear();
-  //   this.spinner = false;
-  // this.router.navigate(['']);
-  // });
-  localStorage.clear();
-  this.router.navigate(['']);
+    this.dashboardSpinner = true;
+    this.authService.logoutUser().subscribe(res=>{
+      this.dashboardSpinner = false;
+      console.log(res);
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    },err=>{
+      this.dashboardSpinner = false;
+      console.log(err);
 
-  
-}
+    });
+  }
 
 }

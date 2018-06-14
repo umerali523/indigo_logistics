@@ -10,6 +10,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import {  ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from '../../shared/modules/shared.module';
+import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 
 @NgModule({
   imports: [
@@ -19,10 +20,10 @@ import { SharedModule } from '../../shared/modules/shared.module';
     ReactiveFormsModule,
     SpinnerModule,
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
     
   ],
-  declarations: [LoginComponent, ForgetPasswordComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, ForgetPasswordComponent, ResetPasswordComponent, EmailConfirmationComponent],
   providers : [AuthService]
 })
 export class AuthModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,12 +9,19 @@ import { Router } from '@angular/router';
 })
 export class AppSidebarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router , private authService : AuthService) { }
 
   ngOnInit() {
   }
+
   logout(){
-    localStorage.clear();
-    this.router.navigate(['']);
+    this.authService.logoutUser().subscribe(res=>{
+      console.log(res);
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    },err=>{
+      console.log(err);
+
+    });
   }
 }
