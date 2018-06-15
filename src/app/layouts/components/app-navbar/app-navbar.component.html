@@ -12,9 +12,11 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
-        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a>
-        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/add_company']"><i class="fa fa-user"></i> Add Company</a>
-        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/add_employee']"><i class="fa fa-user"></i> Add Employee</a>
+        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a>
+        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/companies_list']"><i class="fa fa-user"></i> Companies List</a>
+        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/employees_list']"><i class="fa fa-user"></i> Employees List</a>
+        <!-- <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/add_company']"><i class="fa fa-user"></i> Add Company</a>
+        <a *ngIf="userType=='admin'" class="dropdown-item" [routerLink]="['/indigo/add_employee']"><i class="fa fa-user"></i> Add Employee</a> -->
 
         <a *ngIf="userType=='company'" class="dropdown-item" [routerLink]="['/company/dashboard']"><i class="fa fa-tachometer"></i> Dashboard</a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-key"></i> Logout</a>

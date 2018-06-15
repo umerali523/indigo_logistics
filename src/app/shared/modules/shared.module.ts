@@ -10,6 +10,7 @@ import { NgxTypeaheadModule } from 'ngx-typeahead';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpConfig } from "../../core/services/httpconfig.interceptor";
 import { CompanyService } from "../../core/services/company-service.service";
+import { AdminService } from "../../core/services/admin-service.service";
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { CompanyService } from "../../core/services/company-service.service";
          Page404Component,
          ChangePasswordComponent
     ],
-    providers: [CompanyService,
+    providers: [CompanyService,AdminService,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: HttpConfig,

@@ -20,7 +20,12 @@ BASE_URL        : 'http://203.143.95.45:12220/',
   LOGOUT_URL     : 'backend/public/api/users/logout',
   FORGOT_PASSWORD_URL : 'backend/public/api/password/email',
   RESET_PASSWORD_URL : 'backend/public/api/password/reset',
-  CHANGE_PASSWORD_URL : 'backend/public/api/users/resetpassword'
+  CHANGE_PASSWORD_URL : 'backend/public/api/users/resetpassword',
+  COMPANY_LISTING_URL : 'backend/public/api/companies/listing',
+  EMPLOYEE_LISTING_URL : 'backend/public/api/employees/listing',
+  ADD_EMPLOYEE_URL : 'backend/public/api/employees/add',
+  ADD_COMPANY_URL : 'backend/public/api/companies/add',
+
 
   
 };

@@ -1,0 +1,44 @@
+<div class="">
+    <legend>Employees </legend>
+    <button style="margin-bottom: 15px;background-color: #F06506" class="btn btn-primary"  [routerLink]="['/indigo/add_employee']">Add Employee</button>
+    <!-- && employeeData.length!==0 -->
+    <table *ngIf="employeeData" class="table">
+        <tr>
+            <td><a>Name</a></td>
+            <td><a>Email</a></td>
+            <td><a>Phone</a></td>
+            <td>House No</td>
+            <td>Suburn</td>
+            <td>State</td>
+            <td>Business</td>
+            <td>User Type</td>
+            <td>Is Active</td>
+            <td>Action</td>
+            <td>Action</td>
+        </tr>
+        <!-- | Sorting:path:order, -->
+        <tr *ngFor="let emp of employeeData let i = index">
+            <td>{{emp.first_name}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.phone}}</td>
+            <td>{{emp.house_no}}</td>
+            <td>{{emp.suburb}}</td>
+            <td>{{emp.state}}</td>
+            <td>{{emp.business}}</td>
+            <td>{{emp.user_type}}</td>
+            <td>{{emp.is_active}}</td>
+            <td>Edit</td>
+            <td>Delete</td>
+            
+        </tr>
+        <div >
+            <div style="position: relative;left: 400px;top: 10px;" *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        </div>  
+        
+    </table>
+    <!--  && employeeData.length==0 -->
+    <div *ngIf="!employeeData">
+        No Record Exist
+    </div>
+    <spinner style="position: relative;left:480px;z-index:999;" *ngIf="spinFlag" color="#1ab39c"  [size]="90" [tickness]="1"></spinner>
+</div>

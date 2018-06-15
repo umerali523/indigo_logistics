@@ -50,6 +50,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   onSubmit(){
      var user = {};
+     this.forgotPassErr = "";
      if(!this.form.valid){
       
       if(this.email.hasError('required')){

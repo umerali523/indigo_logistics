@@ -3,6 +3,7 @@ import { SignupComponent } from "./components/signup/signup.component";
 import { ForgetPasswordComponent } from "./components/forget-password/forget-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { EmailConfirmationComponent } from "./components/email-confirmation/email-confirmation.component";
+import { LogGuard } from "../../core/guards/auth/loggedIn.guard";
 
 
 export const AuthRoutes = [

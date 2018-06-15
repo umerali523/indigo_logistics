@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service.service';
 import { ComparePassowrd } from '../../../../shared/validators/compare-password.validator';
 import { General } from '../../../../core/models/general';
+import { AdminService } from '../../../../core/services/admin-service.service';
+import * as SecureLS from 'secure-ls';
+
 
 @Component({
   selector: 'app-signup',
@@ -17,13 +20,20 @@ import { General } from '../../../../core/models/general';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService : AuthService, private router : Router,private modalService: BsModalService, ) { 
+  constructor(private authService : AuthService, private router : Router,private modalService: BsModalService,private adminService : AdminService ) { 
+    this.localStore = new SecureLS();
   }
 
   error_arr = [];
   signupSpin : boolean;
   userType : string = '';
   signupError : string;
+  
+  signupFlag : boolean = false;
+  addEmpFlag : boolean = false;
+  addCmpFlag : boolean = false;
+
+  localStore;
 
   @ViewChild('template')
   public template: TemplateRef<any>;
@@ -60,13 +70,23 @@ export class SignupComponent implements OnInit {
     console.log('route:',this.router.url);
      this.current_route = this.router.url;
     if( this.current_route=="/signup" ||  this.current_route=="/register"){
+      this.signupFlag = true;
+      this.addCmpFlag = false;
+      this.addEmpFlag = false;
       this.userType = 'company'
 
     }else if( this.current_route=="/indigo/add_company"){
+      this.signupFlag = false;
+      this.addCmpFlag = true;
+      this.addEmpFlag = false;
+
       this.userType = 'company'
 
     }else if( this.current_route=="/indigo/add_employee"){
-      this.userType = 'employee'
+      this.signupFlag = false;
+      this.addCmpFlag = false;
+      this.addEmpFlag = true;
+      this.userType = 'indigo_employee'
 
     }
     
@@ -218,24 +238,18 @@ export class SignupComponent implements OnInit {
       this.form.value.password = this.form.value.password_form.password;
       this.form.value.password_confirmation = this.form.value.password_form.password_confirmation;
       user['user'] = this.form.value;
-      this.authService.signupUser(user).subscribe(res=>{
-        console.log('signup response:',res);
-        this.signupSpin = false;
-        this.generalRes = res;
-        if(this.generalRes.code==0){
-          this.openModal(this.template);
-        }else {
-          this.signupError = "Error occured from backend";
-        }
-       
-       // 
-        
-      },err=>{
-        this.signupSpin = false;
-        this.signupError = "Error occured from backend";
-        
 
-      });
+      if(this.signupFlag){
+        this.signupUser(user);
+
+      }else if(this.addCmpFlag){
+        this.addCompany(user);
+
+      }else if(this.addEmpFlag){
+        this.addEmployee(user);
+
+      }
+     
 
     }
 
@@ -307,5 +321,54 @@ export class SignupComponent implements OnInit {
    this.modalRef.hide();
    this.router.navigate(['login']);
    
+  }
+
+  signupUser(user){
+    this.authService.signupUser(user).subscribe(res=>{
+      console.log('signup response:',res);
+      this.signupSpin = false;
+      this.generalRes = res;
+      if(this.generalRes.code==0){
+        this.openModal(this.template);
+      }else {
+        this.signupError = "Error occured from backend";
+      }
+     
+     // 
+      
+    },err=>{
+      this.signupSpin = false;
+      this.signupError = "Error occured from backend";
+      
+
+    });
+  }
+  addCompany(user){
+    var token = this.localStore.get('access_token');
+   // user["user"].token = token;
+    this.adminService.addCompany(user , token).subscribe(res=>{
+      console.log('ADD CMP:',res);
+      if(res['code']==0){
+        this.router.navigate(['/indigo/companies_list']);
+      }
+
+    },err=>{
+      console.log('ADDCMPERR:',err);
+    });
+
+  }
+  addEmployee(user){
+    var token = this.localStore.get('access_token');
+  //  user["user"].token = token;
+    this.adminService.addEmployee(user , token).subscribe(res=>{
+      if(res['code']==0){
+        this.router.navigate(['/indigo/employees_list']);
+      }
+      console.log('ADD EMP:',res);
+
+    },err=>{
+      console.log('ADDCMPEMP:',err);
+    });
+
   }
 }

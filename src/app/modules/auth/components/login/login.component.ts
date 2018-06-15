@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
           this.localStore.set('last_name',user.last_name);
           this.localStore.set('user_type',user.user_type);
           if(user.user_type=='admin'){
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['indigo/dashboard']);
           }
           if(user.user_type=='company'){
             this.router.navigate(['company']);

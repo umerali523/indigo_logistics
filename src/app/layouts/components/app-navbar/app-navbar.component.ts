@@ -47,7 +47,7 @@ export class AppNavbarComponent implements OnInit {
       localStorage.clear();
       this.router.navigate(['/login']);
     },err=>{
-      console.log(err);
+      console.log('Err:',err);
 
     });
    

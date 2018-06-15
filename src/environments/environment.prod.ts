@@ -12,7 +12,13 @@ export const api_params = {
   VERIFY_EMAIL  : 'backend/public/api/users/verify',
   FORGOT_PASSWORD_URL : 'backend/public/api/password/email',
   RESET_PASSWORD_URL : 'backend/public/api/password/reset',
-  CHANGE_PASSWORD_URL : 'backend/public/api/users/resetpassword'
+  CHANGE_PASSWORD_URL : 'backend/public/api/users/resetpassword',
+  COMPANY_LISTING_URL : 'backend/public/api/companies/listing',
+  EMPLOYEE_LISTING_URL : 'backend/public/api/employees/listing',
+  ADD_EMPLOYEE_URL : 'backend/public/api/employees/add',
+  ADD_COMPANY_URL : 'backend/public/api/companies/add',
+
+
 
 
 
