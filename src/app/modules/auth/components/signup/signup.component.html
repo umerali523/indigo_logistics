@@ -126,11 +126,11 @@
                 <span *ngIf="this.error_arr[8]" class="labelError">{{this.error_arr[8]}}</span>
                 
               </label>
-              <input  
+              <input
               ngxTypeahead
               [value]="query3"
               [taList]="staticList" 
-              (taSelected)="handleStaticResultSelected($event)"
+              (taSelected)="selectedSuburb($event)"
               placeholder="Enter Postcode/Suburb"  
               formControlName="suburb"
               id="suburb" 

@@ -34,6 +34,10 @@ export class AuthService {
     return this.http.post(api_params.RESET_PASSWORD_URL,user);
 
   }
+  getState(data){
+    console.log('Data:',data);
+    return this.http.post(api_params.GET_STATE_URL , data);
+  }
   isLoggedIn(){
     let jwtHelper = new JwtHelper();
      var token = this.localStore.get("access_token");

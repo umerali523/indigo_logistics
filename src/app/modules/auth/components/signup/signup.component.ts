@@ -11,6 +11,8 @@ import { ComparePassowrd } from '../../../../shared/validators/compare-password.
 import { General } from '../../../../core/models/general';
 import { AdminService } from '../../../../core/services/admin-service.service';
 import * as SecureLS from 'secure-ls';
+import { suburbs_list } from "../../../../shared/services/suburbs";
+
 
 
 @Component({
@@ -47,26 +49,33 @@ export class SignupComponent implements OnInit {
   current_route:string;
   generalRes : any;
   public query3 = '';
-  public staticList = [
-    "guitar",
-    "drums",
-    "bass",
-    "electric guitars",
-    "keyboards",
-    "mic",
-    "bass guitars",
-    "trumpet",
-    "horns",
-    "guitar workshops",
-    "pedals"
-  ];
+  // public staticList = [
+  //   "guitar",
+  //   "drums",
+  //   "bass",
+  //   "electric guitars",
+  //   "keyboards",
+  //   "mic",
+  //   "bass guitars",
+  //   "trumpet",
+  //   "horns",
+  //   "guitar workshops",
+  //   "pedals"
+  // ];
+  public staticList = suburbs_list;
 
-  public handleStaticResultSelected (result) {
+  public selectedSuburb (result) {
     this.query3 = result;
     console.log('Selected:',this.query3);
+    this.authService.getState({'postsuburb' : this.query3}).subscribe(res=>{
+      console.log('GetState Res:',res);
+    },err=>{
+      console.log('GetState Err:',err);
+    });
   }
   
   ngOnInit() {
+   // console.log('SuburbList' , suburbs_list);
     console.log('route:',this.router.url);
      this.current_route = this.router.url;
     if( this.current_route=="/signup" ||  this.current_route=="/register"){

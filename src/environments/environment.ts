@@ -25,7 +25,7 @@ BASE_URL        : 'http://203.143.95.45:12220/',
   EMPLOYEE_LISTING_URL : 'backend/public/api/employees/listing',
   ADD_EMPLOYEE_URL : 'backend/public/api/employees/add',
   ADD_COMPANY_URL : 'backend/public/api/companies/add',
-
+  GET_STATE_URL : 'https://www.movit.com.au/ajax/getState'
 
   
 };
