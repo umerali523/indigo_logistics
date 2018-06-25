@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth-service.service';
  import { ComparePassowrd } from '../../../shared/validators/compare-password.validator';
  import * as SecureLS from 'secure-ls';
  import { suburbs_list } from "../../../shared/services/suburbs";
+import { CompanyService } from '../../../core/services/company-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,13 +20,33 @@ import { AuthService } from '../../../core/services/auth-service.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private authService : AuthService, private router : Router,private modalService: BsModalService) { 
+  constructor(private authService : AuthService, private router : Router,private modalService: BsModalService , private cmpService : CompanyService) { 
     this.localStore = new SecureLS();
+    this.token = this.localStore.get('access_token');
 
   }
 
   ngOnInit() {
+    this.spinner = true;
+    this.authService.getUser().subscribe(res=>{
+      if(res["code"]==0){
+        this.user = res["data"];
+        this.first_name.patchValue(this.user.first_name);
+        this.last_name.patchValue(this.user.last_name);
+        this.email.patchValue(this.user.email);
+        this.phone.patchValue(this.user.phone);
+        this.house_no.patchValue(this.user.house_no);
+        this.street.patchValue(this.user.street);
+        this.suburb.patchValue(this.user.suburb);
+        this.state.patchValue(this.user.state);
+        this.business.patchValue(this.user.business);
+        this.spinner = false;
+        console.log('User:',this.user);
+      }
 
+    },err=>{
+
+    });
   }
 
   error_arr = [];
@@ -33,7 +54,8 @@ export class ProfileComponent implements OnInit {
   userType : string = '';
   errorMessage : string;
   public query3 = '';
-
+  token;
+  user;
   
  
   localStore;
@@ -46,7 +68,7 @@ export class ProfileComponent implements OnInit {
     house_no : new FormControl('',[Validators.required]) ,
     street : new FormControl('',[Validators.required]) ,
     suburb : new FormControl('',[Validators.required]) ,
-    state : new FormControl('',[Validators.required]) ,
+    state : new FormControl({value:'',disabled:true},[Validators.required]) ,
     business : new FormControl('',[Validators.required]) ,
   });
   get first_name(){
@@ -156,12 +178,20 @@ export class ProfileComponent implements OnInit {
       console.log(this.error_arr);
       
     }else{
-      // this.error_arr = [];
-      // this.spinner = true;
-      // var user = {};
-      // this.form.value.password = this.form.value.password_form.password;
-      // this.form.value.password_confirmation = this.form.value.password_form.password_confirmation;
-      // user['user'] = this.form.value;
+       this.error_arr = [];
+       this.spinner = true;
+       var user = {};
+       user['user'] = this.form.value;
+       this.cmpService.editProfile(user,this.token).subscribe(res=>{
+         this.spinner = false;
+         if(res['code']==0){
+          this.router.navigate(['/company/dashboard']);
+         }
+        console.log('EditProf:',res);
+       },err=>{
+        this.spinner = false;
+        console.log('EditProfErr:',err);
+       });;
 
     }
 
@@ -174,9 +204,23 @@ export class ProfileComponent implements OnInit {
 
   public selectedSuburb (result) {
     this.query3 = result;
+    this.error_arr[6] = '';
     console.log('Selected:',this.query3);
     this.authService.getState({'postsuburb' : this.query3}).subscribe(res=>{
       console.log('GetState Res:',res);
+      if(res['code']==0){
+        var state = res['data']['state'];
+        if(state!=""){
+          this.state.patchValue(state);
+          this.suburb.patchValue(this.query3);
+        }else{
+          this.state.patchValue('');
+          this.suburb.patchValue("");
+          this.error_arr[6] = 'Invalid Suburb/Postcode';
+
+        }
+
+      }
     },err=>{
       console.log('GetState Err:',err);
     });

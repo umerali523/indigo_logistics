@@ -16,6 +16,7 @@ export const api_params = {
 BASE_URL        : 'http://203.143.95.45:12220/',
   SIGNUP_URL    : 'backend/public/api/users/register',
   LOGIN_URL     : 'backend/public/api/users/login',
+  GET_USER_URL     : 'backend/public/api/getuser',
   VERIFY_EMAIL  : 'backend/public/api/users/verify',
   LOGOUT_URL     : 'backend/public/api/users/logout',
   FORGOT_PASSWORD_URL : 'backend/public/api/password/email',
@@ -25,7 +26,9 @@ BASE_URL        : 'http://203.143.95.45:12220/',
   EMPLOYEE_LISTING_URL : 'backend/public/api/employees/listing',
   ADD_EMPLOYEE_URL : 'backend/public/api/employees/add',
   ADD_COMPANY_URL : 'backend/public/api/companies/add',
-  GET_STATE_URL : 'https://www.movit.com.au/ajax/getState'
+  GET_STATE_URL : 'backend/public/api/getstate',
+  EDIT_PROFILE_URL : 'backend/public/api/user/update',
+
 
   
 };

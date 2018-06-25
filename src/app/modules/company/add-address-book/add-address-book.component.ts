@@ -5,6 +5,7 @@ import * as SecureLS from 'secure-ls';
 import { CompanyService } from '../../../core/services/company-service.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { suburbs_list } from "../../../shared/services/suburbs";
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Location } from '@angular/common';
 })
 export class AddAddressBookComponent implements OnInit {
 
-  constructor(private companyService : CompanyService ,) { 
+  constructor(private companyService : CompanyService ,private authService : AuthService) { 
     this.localStore =  new SecureLS();
 
   }
@@ -37,7 +38,7 @@ export class AddAddressBookComponent implements OnInit {
     phone : new FormControl('', [Validators.required,Validators.pattern("[0-9]+")]),
     //password_confirmation : new FormControl('', [Validators.required ,ComparePassowrd(this.form)]) ,
     suburb : new FormControl('',[Validators.required]) ,
-    state : new FormControl('',[Validators.required]) ,
+    state : new FormControl({value : '',disabled : true},[Validators.required]) ,
     company_name : new FormControl('',[Validators.required]) ,
     delivery_type : new FormControl('',[Validators.required]) ,
   });
@@ -74,6 +75,37 @@ export class AddAddressBookComponent implements OnInit {
     return this.form.get('address ');
   }
 
+  public query3 = '';
+  
+  public staticList = suburbs_list;
+
+  public selectedSuburb (result) {
+    this.query3 = result;
+    this.error_arr[3] = '';
+
+    console.log('Selected:',this.query3);
+    this.authService.getState({postsuburb: this.query3}).subscribe(res=>{
+      console.log('StateRes:',res);
+
+      if(res["code"]==0){
+        var state = res["data"]["state"];
+        if(state!=""){
+          this.suburb.patchValue(this.query3);
+          this.state.patchValue(state);
+
+        }else{
+          this.state.patchValue("");
+          this.suburb.patchValue("");
+          this.error_arr[3] = 'Invalid Suburb/Postcode';
+
+        }
+      }else{
+        console.log('Res:',res);
+      }
+    },err=>{
+      console.log('GetState Err:',err);
+    });
+  }
   onSubmit(){
     
     if(!this.form.valid){

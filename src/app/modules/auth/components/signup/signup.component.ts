@@ -66,9 +66,27 @@ export class SignupComponent implements OnInit {
 
   public selectedSuburb (result) {
     this.query3 = result;
+    this.error_arr[8] = '';
+
     console.log('Selected:',this.query3);
-    this.authService.getState({'postsuburb' : this.query3}).subscribe(res=>{
-      console.log('GetState Res:',res);
+    this.authService.getState({postsuburb: this.query3}).subscribe(res=>{
+      console.log('StateRes:',res);
+
+      if(res["code"]==0){
+        var state = res["data"]["state"];
+        if(state!=""){
+          this.suburb.patchValue(this.query3);
+          this.state.patchValue(state);
+
+        }else{
+          this.state.patchValue("");
+          this.suburb.patchValue("");
+          this.error_arr[8] = 'Invalid Suburb/Postcode';
+
+        }
+      }else{
+        console.log('Res:',res);
+      }
     },err=>{
       console.log('GetState Err:',err);
     });
@@ -118,8 +136,8 @@ export class SignupComponent implements OnInit {
     house_no : new FormControl('',[Validators.required]) ,
     street : new FormControl('',[Validators.required]) ,
     suburb : new FormControl('',[Validators.required]) ,
-    state : new FormControl('',[Validators.required]) ,
-    company_name : new FormControl('',[Validators.required]) ,
+    state : new FormControl({value:'',disabled:true},[Validators.required]) ,
+    business : new FormControl('',[Validators.required]) ,
     user_type : new FormControl('',[Validators.required]) ,
     term_condition : new FormControl('',[Validators.required]),
   });

@@ -1,6 +1,6 @@
 <span class="containerTitle">Profile</span>
 <div class="profileContainer">
-    <!-- <spinner style="z-index:999;position:relative;left:200px;top:120px;" *ngIf="spinner" color="#F06506"  [size]="90" [tickness]="1"></spinner> -->
+    <spinner style="z-index:999;position:relative;left:440px;top:400px;" *ngIf="spinner" color="#F06506"  [size]="90" [tickness]="1"></spinner>
     <form (ngSubmit)="editProfile()" [formGroup]="form" class="form-group">
         <div class="form-row">
             <div class="form-group col-md-4">
@@ -8,7 +8,7 @@
             <div class="form-group col-md-2" >
                 <img src="../../../../assets/img/default.png" height="120px;" style="margin-bottom: 10px;">
                 <label for="first_name"> <b>Change Profile Picture</b>
-                    <button style="background-color: #F06506;border-radius: 4px; margin-top: 5px;"  type="file" class="btn btn-block btn-success">BROWSE</button>
+                    <button [disabled]="this.spinner" style="background-color: #F06506;border-radius: 4px; margin-top: 5px;"  type="file" class="btn btn-block btn-success">BROWSE</button>
                 </label>
             </div>
 
@@ -125,7 +125,7 @@
             </div>
             <div class="form-group col-md-2" >
                 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-                <button style="background-color: #F06506;border-radius: 4px;"  type="submit" class="btn btn-block btn-success">Update</button>
+                <button [disabled]="this.spinner" style="background-color: #F06506;border-radius: 4px;"  type="submit" class="btn btn-block btn-success">Update</button>
             </div>
             <div class="form-group col-md-6">
             </div>

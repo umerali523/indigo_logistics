@@ -17,7 +17,11 @@ export const api_params = {
   EMPLOYEE_LISTING_URL : 'backend/public/api/employees/listing',
   ADD_EMPLOYEE_URL : 'backend/public/api/employees/add',
   ADD_COMPANY_URL : 'backend/public/api/companies/add',
-  GET_STATE_URL : 'https://www.movit.com.au/ajax/getState',
+  GET_STATE_URL : 'backend/public/api/getstate',
+  GET_USER_URL     : 'backend/public/api/getuser',
+  EDIT_PROFILE_URL : 'backend/public/api/user/update',
+
+
 
 
 

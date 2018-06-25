@@ -20,4 +20,8 @@ export class CompanyService {
   getEmployeesList(){
     return this.http.get(api_params.COMPANY_LISTING_URL,{});
   }
+  editProfile(data , token){
+    var url = api_params.EDIT_PROFILE_URL + "?token=" + token;
+    return this.http.post(url,data);
+  }
 }

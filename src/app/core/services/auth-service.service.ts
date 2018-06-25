@@ -34,6 +34,9 @@ export class AuthService {
     return this.http.post(api_params.RESET_PASSWORD_URL,user);
 
   }
+  getUser(){
+    return this.http.get(api_params.GET_USER_URL);
+  }
   getState(data){
     console.log('Data:',data);
     return this.http.post(api_params.GET_STATE_URL , data);
