@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@syncfusion/ej2-ng-charts": "^16.1.48",
     "angular2-jwt": "^0.2.3",
     "angular2-spinner": "^1.0.10",
     "core-js": "^2.4.1",

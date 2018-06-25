@@ -1,0 +1,12 @@
+.applyForCreditContainer{
+    position: relative;
+    top: 30px;
+    left: 70px;
+    padding: 10px;
+    padding-left: 100px;
+    width: 92%;
+    background-color: white;
+}
+.hasError{
+    margin-left: 15px;
+}

@@ -19,11 +19,11 @@ export class HttpConfig implements HttpInterceptor {
     
     this.token = this.localStore.get('access_token');
    
-    console.log('TOKKEN:',this.token);
-    if(req.method=="POST"  && (this.token=='' || !this.token)){
-      console.log('Empty Token POST REQUEST:',req);
-      return next.handle(req);
-    }
+    // console.log('TOKKEN:',this.token);
+    // if(req.method=="POST"  && (this.token=='' || !this.token)){
+    //   console.log('Empty Token POST REQUEST:',req);
+    //   return next.handle(req);
+    // }
 
     if(req.method=="POST"){
       var newReq = req.clone({

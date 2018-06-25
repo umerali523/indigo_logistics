@@ -119,7 +119,7 @@ export class SignupComponent implements OnInit {
     street : new FormControl('',[Validators.required]) ,
     suburb : new FormControl('',[Validators.required]) ,
     state : new FormControl('',[Validators.required]) ,
-    business : new FormControl('',[Validators.required]) ,
+    company_name : new FormControl('',[Validators.required]) ,
     user_type : new FormControl('',[Validators.required]) ,
     term_condition : new FormControl('',[Validators.required]),
   });

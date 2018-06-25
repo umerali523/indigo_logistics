@@ -5,3 +5,10 @@
 5) State dropdown with post code options
 6) Thanku message after signup (popup)
 
+-------------------------------------------
+
+1) Get a quote
+2) My quotes
+3) Profile
+4) Change Picture
+5) Apply for Credit

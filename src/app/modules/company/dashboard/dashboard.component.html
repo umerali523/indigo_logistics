@@ -17,7 +17,7 @@
       </div>
     <!-- </a> -->
       <div class="col-sm-4 col-lg-3">
-        <a [routerLink]="['/company/dashboard']">
+        <a [routerLink]="['/company/get_quote']">
         <div class="card text-white bg-info">
           <div class="card-body pb-0">
               <i class="dashboardBoxIcons fa fa-pencil-square-o"></i>
@@ -30,7 +30,7 @@
         </a>
       </div><!--/.col-->
       <div class="col-sm-4 col-lg-3">
-          <a [routerLink]="['/company/dashboard']">
+          <a [routerLink]="['/company/my_quotes']">
         <div class="card text-white bg-warning">
           <div class="card-body pb-0">
               <i class="dashboardBoxIcons fa  fa-folder-open"></i>
@@ -43,7 +43,7 @@
         </a>
       </div><!--/.col-->
       <div class="col-sm-4 col-lg-3">
-          <a [routerLink]="['/company/dashboard']">
+          <a [routerLink]="['/company/my_bookings']">
         <div class="card text-white bg-danger">
           <div class="card-body pb-0" >
               <i class="dashboardBoxIcons fa fa-calendar"></i>
@@ -56,7 +56,7 @@
         </a>
       </div>
        <div class="col-sm-4 col-lg-3">
-          <a [routerLink]="['/company/dashboard']">
+          <a [routerLink]="['/company/my_invoices']">
         <div class="card text-white bg-secondary">
           <div class="card-body pb-0">
               <i class="dashboardBoxIcons fa fa-list-alt"></i>
@@ -69,7 +69,7 @@
         </a>
       </div>
       <div class="col-sm-4 col-lg-3">
-          <a [routerLink]="['/company/dashboard']">
+          <a [routerLink]="['/company/address_book']">
           <div class="card text-white bg-dark">
             <div class="card-body pb-0">
 
@@ -87,7 +87,7 @@
         </div>
 
         <div class="col-sm-4 col-lg-3">
-            <a [routerLink]="['/company/dashboard']">
+            <a [routerLink]="['/company/apply_for_credit']">
             <div class="card text-white bg-success">
               <div class="card-body pb-0">
                   <i class="dashboardBoxIcons fa  fa-credit-card"></i>
@@ -101,7 +101,7 @@
           </div>
          
             <div class="col-sm-4 col-lg-3">
-                <a [routerLink]="['/company/dashboard']">
+                <a [routerLink]="['/company/profile']">
                 <div class="card text-white bg-info">
                   <div class="card-body pb-0">
                       <i class="dashboardBoxIcons fa fa-user"></i>
@@ -149,7 +149,14 @@
             <input class="customDP" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)">
             
           </div>
+          
         </div>
+        <ejs-chart style='display:block' id='chartcontainer' [title]='title' [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+           [tooltip]='tooltip' (load)='load($event)' [chartArea]='chartArea' [width]='width' [height]='cHeight'>
+            <e-series-collection>
+                <e-series [dataSource]='data' type='Line' xName='x' yName='y' name='Germany' width=2 [marker]='marker'> </e-series>
+            </e-series-collection>
+         </ejs-chart>
         
 
       </div>
@@ -162,7 +169,12 @@
               
             </div>
           </div>
-          
+          <!-- <ejs-chart style='display:block' id='chartcontainer' [title]='title' [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+          [tooltip]='tooltip' (load)='load($event)' [chartArea]='chartArea' [width]='width' [height]='cHeight'>
+           <e-series-collection>
+               <e-series [dataSource]='data1' type='Line' xName='x' yName='y' name='Germany' width=2 [marker]='marker'> </e-series>
+           </e-series-collection>
+        </ejs-chart> -->
   
         </div>
 
@@ -177,7 +189,12 @@
               <input class="customDP" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)">
             </div>
           </div>
-          
+          <!-- <ejs-chart style='display:block' id='chartcontainer' [title]='title' [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+          [tooltip]='tooltip' (load)='load($event)' [chartArea]='chartArea' [width]='width' [height]='cHeight'>
+           <e-series-collection>
+               <e-series [dataSource]='data2' type='Line' xName='x' yName='y' name='Germany' width=2 [marker]='marker'> </e-series>
+           </e-series-collection>
+        </ejs-chart> -->
   
         </div>
       </div>
