@@ -201,7 +201,9 @@ export class ProfileComponent implements OnInit {
        
   }
   public staticList = suburbs_list;
-
+  onFileChange = function(event){
+    console.log('Inside OnFileChange');
+  }
   public selectedSuburb (result) {
     this.query3 = result;
     this.error_arr[6] = '';

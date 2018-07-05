@@ -28,6 +28,8 @@ BASE_URL        : 'http://203.143.95.45:12220/',
   ADD_COMPANY_URL : 'backend/public/api/companies/add',
   GET_STATE_URL : 'backend/public/api/getstate',
   EDIT_PROFILE_URL : 'backend/public/api/user/update',
+  GET_IMAGE_URL : 'backend/public/',
+  UPLOAD_IMAGE_URL : 'backend/public/api/user/uploadpicture',
 
 
   

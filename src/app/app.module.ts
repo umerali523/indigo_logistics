@@ -14,7 +14,6 @@ import { SpinnerModule } from 'angular2-spinner/dist';
 
 
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/directives/nav-dropdown.directive';
-import { BreadcrumbsComponent } from './shared/components/breadcrumb.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/directives/sidebar.directive';
 import { AsideToggleDirective } from './shared/directives/aside.directive';
 
@@ -45,7 +44,6 @@ import { AccessAdminGuard } from './core/guards/admin/access.guard';
     AppComponent,
     AuthLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
-    BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     DashboardComponent,

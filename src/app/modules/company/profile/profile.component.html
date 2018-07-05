@@ -1,7 +1,6 @@
 <span class="containerTitle">Profile</span>
 <div class="profileContainer">
     <spinner style="z-index:999;position:relative;left:440px;top:400px;" *ngIf="spinner" color="#F06506"  [size]="90" [tickness]="1"></spinner>
-    <form (ngSubmit)="editProfile()" [formGroup]="form" class="form-group">
         <div class="form-row">
             <div class="form-group col-md-4">
             </div>
@@ -15,6 +14,8 @@
             <div class="form-group col-md-6">
             </div>
         </div>
+    <form (ngSubmit)="editProfile()" [formGroup]="form" class="form-group">
+
         <div class="form-row">
             <div class="form-group col-md-5 col-xs-2">
              <label for="first_name">First Name

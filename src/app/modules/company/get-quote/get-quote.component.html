@@ -1,37 +1,144 @@
-<span class="containerTitle">Apply For Credit</span>
+<span class="containerTitle">Get A Quote</span>
 <div class="getQuoteContainer">
-    <!-- <spinner style="z-index:999;position:relative;left:200px;top:120px;" *ngIf="spinner" color="#F06506"  [size]="90" [tickness]="1"></spinner>-->
 
-    <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-group">
-        <div class="form-group row">
-            <label for="business" class="col-sm-2 col-form-label">Business Name</label>
-            <div class="col-sm-10">
-                <input style="width: 30%;" type="text" name="business" formControlName="business" class="form-control" id="business" placeholder="Business Name">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-group">
+        <h5>Location Details</h5>
+        <hr/>
+            <div class="form-group row">
+                    <label for="pickup_location" class="col-sm-2 col-form-label">Pickup Location</label>
+                    <div class="col-sm-4">
+                      <input type="text" formControlName="pickup_location"  class="form-control" id="pickup_location" placeholder="Enter suburb or postcode">
+                    </div>
+                   
+                    <label for="delivery_location" class="col-sm-2 col-form-label">Delivery Location</label>
+                    <div class="col-sm-4">
+                      <input type="text" formControlName="delivery_location"  class="form-control" id="delivery_location" placeholder="Enter suburb or postcode">
+                    </div>
             </div>
-            <label class="col-sm-2 col-form-label"></label>
-            <span *ngIf="this.error_arr[0]" class="labelError hasError">{{this.error_arr[0]}}</span>
-        </div>
-        <div class="form-group row">
-            <label for="acn_number" class="col-sm-2 col-form-label">ABN/ACN</label>
-            <div class="col-sm-10">
-                <input style="width: 30%;" type="text" name="acn_number" formControlName="acn_number" class="form-control" id="acn_number" placeholder="ABN/ACN">
+            <div class="form-group row">
+                    <label for="pickup_location_error" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-4">
+                    <span *ngIf="this.error_arr[0]" class="labelError hasError">{{this.error_arr[0]}}</span>
+
+                    </div>
+                   
+                    <label for="delivery_location_error" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-4">
+                        <span *ngIf="this.error_arr[2]" class="labelError hasError">{{this.error_arr[2]}}</span>
+
+                    </div>
             </div>
-            <label class="col-sm-2 col-form-label"></label>
-            <span *ngIf="this.error_arr[1]" class="labelError hasError">{{this.error_arr[1]}}</span>
-        </div>
-        <div class="form-group row">
-            <label for="weekly_spend" class="col-sm-2 col-form-label">Average weekly spend</label>
-            <div class="col-sm-10">
-                <input style="width: 30%;" formControlName="weekly_spend" type="password" class="form-control" id="password_confirmation" name="weekly_spend" placeholder="Average weekly spend">
+            <div class="form-group row">
+                    <label for="pickup_location_type" class="col-sm-2 col-form-label">Select Type</label>
+                    <div class="col-sm-1">
+                            <input class="form-check-input" formControlName="pickup_location_type" type="radio" name="pickup_location_type"  value="business">&nbsp;Business
+                    </div>
+                    <div class="col-sm-1">
+                            <input class="form-check-input" formControlName="pickup_location_type" type="radio" name="pickup_location_type"  value="residence">&nbsp;Residence
+                    </div>
+                    <div class="col-sm-1">
+                            <input class="form-check-input" formControlName="pickup_location_type" type="radio" name="pickup_location_type"  value="depot">&nbsp;Depot
+                    </div>
+                    <div class="col-sm-1"></div>
+                   
+                    <label for="delivery_location" class="col-sm-2 col-form-label">Select Type</label>
+                    <div class="col-sm-1">
+                        <input class="form-check-input" formControlName="delivery_location_type" type="radio" name="delivery_location_type" value="business"> Business
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-check-input" formControlName="delivery_location_type" type="radio" name="delivery_location_type"  value="residence"> Residence
+                    </div>
+                    <div class="col-sm-1">
+                        <input class="form-check-input" formControlName="delivery_location_type" type="radio" name="delivery_location_type"  value="depot"> Depot
+                    </div>
             </div>
-            <label class="col-sm-2 col-form-label"></label>
-            <span *ngIf="this.error_arr[2]" class="labelError hasError">{{this.error_arr[2]}}</span>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <button style="background-color: #F06506;width: 140px;border-radius: 3px;" type="submit" class="btn btn-primary">Submit</button>
+            <h5>Package Details</h5>
+            <hr/>
+            <div class="form-group row" style="margin-left: 0px;">
+                <label for="package_type" class="col-xs-1 col-form-label">Type</label>
+                <div class="col-sm-2">
+                    <select name="package_type" formControlName="package_type" class="form-control">
+                            <option [selected]="true" value="box">Box</option>
+                            <option value="carton">Carton</option>
+                            <option value="container">Container</option>
+                            <option value="crate">Crate</option>
+                            <option value="drum">drum</option>
+                            <option value="flat_pack">Flat Pack</option>
+                            <option value="machinery">Machinery</option>
+                            <option value="pallet">Pallet</option>
+                            <option value="roll">Roll</option>
+                            <option value="satchel">Satchel</option>
+                            <option value="skid">Skid</option>
+                            <option value="other">Other</option>
+                            <option value="full_semi_load">Full Semi Load</option>
+                            <option value="b_double">B-Double</option>
+                            
+                    </select>
+                </div>
+                <label for="package_type_weight" class="col-xs-1 col-form-label">Weight</label>
+                <div class="col-sm-1">
+                    <input class="form-control" formControlName="package_type_weight" type="text" name="package_type_weight" >
+                </div>
+               
+                <label for="package_type_length" class="col-xs-1 col-form-label">Length</label>
+                <div class="col-sm-1">
+                    <input class="form-control" formControlName="package_type_length" type="text" name="package_type_length" >
+                </div>
+               
+                <label for="package_type_width" class="col-xs-1 col-form-label">Width</label>
+                <div class="col-sm-1">
+                    <input class="form-control" formControlName="package_type_width" type="text" name="package_type_width" >
+                </div>
+                <label for="package_type_height" class="col-xs-1 col-form-label">Height</label>
+                <div class="col-sm-1">
+                    <input class="form-control" formControlName="package_type_height" type="text" name="package_type_height" >
+                </div>
+                <label for="package_type_quantity" class="col-xs-1 col-form-label">Quantity</label>
+                <div class="col-sm-2 input-group">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </span>
+                    <input  style="width: 20%;margin-right: 3px;" formControlName="package_type_quantity" type="text" name="package_type_quantity" value="1" min="1" max="99">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-number">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- <div class="col-sm-1">
+                    <button>-</button>
+                    <button>+</button>
+                </div> -->
+                
+               
+                
             </div>
-        </div>
-    </form>  -->
+            <div class="form-group row" style="margin-left: 0px;">
+                <label for="name" class="col-xs-2 col-form-label">Name</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly  class="form-control" id="name" placeholder="Name">
+                </div>
+                
+                <label for="Email" class="col-xs-2 col-form-label">Email</label>
+                <div class="col-sm-3">
+                    <input readonly type="text"  class="form-control" id="email" placeholder="Email">
+                </div>
+
+                <label for="phone" class="col-xs-2 col-form-label">Phone</label>
+                <div class="col-sm-3">
+                    <input readonly type="text"  class="form-control" id="phone" placeholder="Phone">
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <button style="background-color: #F06506;width: 140px;border-radius: 3px;" type="submit" class="btn btn-primary">Get A Quote</button>
+                </div>
+            </div> 
+        </form>
+
+    
 </div>
